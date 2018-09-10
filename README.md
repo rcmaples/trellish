@@ -13,7 +13,6 @@ A Trello® Clone
 
 ### Other Dependencies of note:
 - Mocha/Chai
-- Axios.js
 - lodash (pick / isboolean)
 - mongoose
 - passport
