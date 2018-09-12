@@ -11,11 +11,11 @@ function tearDownDB() {
 
 describe('Root endpoint...', function() {
   describe('GET `/`', () => {
-    it('should respond with static html', done => {
-      request(app)
+    it('should respond with static html', () => {
+      return request(app)
         .get('/')
         .expect(200)
-        .expect('content-type', 'text/html; charset=UTF-8', done());
+        .expect('content-type', 'text/html; charset=UTF-8');
     });
   });
 });
