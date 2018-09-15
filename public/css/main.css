@@ -4,9 +4,9 @@
 }
 
 body {
-  /* width: 100%; */
+  min-width: 365px;
   font-family: 'Open Sans', sans-serif;
-  height: 900px;
+  height: 97.93vh;
   background: rgb(2, 0, 36, 1);
   background: radial-gradient(
     circle at center bottom,
@@ -24,16 +24,21 @@ body {
 
 h1 {
   margin: 0;
-  height: 135px;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
   display: block;
   width: calc(100% / 3);
 }
 
 h1 img {
   border: none;
+  height: 85px;
+}
+
+@media screen and (max-width: 768px) {
+  h1 img {
+    content: url('../img/badge.png');
+    height: 75px;
+    margin: 4px;
+  }
 }
 
 h1,
@@ -68,15 +73,36 @@ button[type='submit'] {
   /* height: 30px; */
 }
 
-#header-user {
-  display: block;
-  margin-top: -42px;
-  float: right;
-}
-
 button {
   font-size: 20px;
   width: 95px;
   height: 34px;
   border-radius: 5px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+#nav .icon {
+  margin: 0 5px 0 5px;
+}
+
+#addBoardButton {
+  width: 60px;
+  height: 60px;
+  background: no-repeat center url('../img/add-board-button.svg');
+}
+
+#accountButton {
+  width: 60px;
+  height: 60px;
+  background: no-repeat center url('../img/account-avatar.svg');
 }
