@@ -118,6 +118,10 @@ button {
   background: no-repeat center url('../img/account-avatar.svg');
 }
 
+/* Welcome and Signup/Signin */
+
+sdf
+
 /* Boards  & Cards */
 
 li {
@@ -125,6 +129,7 @@ li {
 }
 
 .board-container {
+  display: none !important; /* TODO: REMOVE THIS LINE AFTER DEV */
   position: relative;
   flex: 1 1 auto;
   display: flex;
