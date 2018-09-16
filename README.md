@@ -23,7 +23,7 @@ A Trello® Clone
 
 ### View live:
 
-~~[View live here](https://trellish.herokuapp.com)~~\
+[View live here](https://trellish.herokuapp.com)\
 ~~either sign up, or sign in with the demo credentials:~~\
 ~~john@doe.com / abc.1234~~
 
