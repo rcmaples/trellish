@@ -50,12 +50,21 @@
         </div>
 
         <ul>
-          <li class="card">this is 1 thing<div class="edit-item"></div>
+          <!-- wrap text after 19 characters; max length 39 chars -->
+          <li class="card">
+            <div class='breakword'>wrap text after 19 chars; max length 39</div>
+            <div class="edit-item"></div>
           </li>
-          <li class="card">this is 2 thing</li>
-          <li class="card">this is 3 thing</li>
-          <li class="card">this is 4 thing</li>
-          <li class="card">this is 5 thing</li>
+          <li class="card complete">this is a completed thing</li>
+          <li class="card favorite">this is a favorited thing</li>
+          <li class="card priority">this is priority thing</li>
+          <li class="card edit">
+            <div class="edit"></div>
+            <div class="complete"></div>
+            <div class="favorite"></div>
+            <div class="priority"></div>
+            <div class="trash"></div>
+          </li>
           <li class="card">this is 6 thing</li>
           <li class="card">this is 7 thing</li>
           <li class="card">this is 8 thing</li>

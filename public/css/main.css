@@ -217,8 +217,9 @@ li {
 }
 
 .card {
+  overflow: hidden;
   font-size: 22px;
-  line-height: 22px;
+  line-height: 25px;
   padding: 10px;
   height: 65px;
   width: 92%;
@@ -229,10 +230,73 @@ li {
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
   /* offset-x | offset-y | blur-radius | spread-radius | color */
 }
+.card .breakword {
+  display: inline-block;
+  word-break: break-word;
+  max-width: 17ch;
+  margin-top: -5px;
+  white-space: pre-wrap;
+}
 
 .edit-item {
   width: 40px;
   height: 40px;
   background: url('../img/edit.svg');
   float: right;
+}
+
+.card.favorite {
+  background: #ffd57c;
+}
+
+.card.complete {
+  background: #7cffa8;
+}
+
+.card.priority {
+  background: #ff7c7c;
+}
+
+.card.edit {
+  display: flex;
+  justify-content: space-between;
+  background: #ff5489;
+  color: #ffffff;
+}
+
+.card.edit .edit {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  -webkit-mask-image: url('../img/edit.svg');
+  mask-image: url('../img/edit.svg');
+  /* background: no-repeat center url('../img/edit.svg'); */
+}
+.card.edit .edit:before {
+  color: white;
+}
+
+.card.edit .complete {
+  width: 40px;
+  height: 40px;
+
+  background: no-repeat center url('../img/complete.svg');
+}
+
+.card.edit .favorite {
+  width: 40px;
+  height: 40px;
+  background: no-repeat center url('../img/favorite.svg');
+}
+
+.card.edit .priority {
+  width: 40px;
+  height: 40px;
+  background: no-repeat center url('../img/priority.svg');
+}
+
+.card.edit .trash {
+  width: 40px;
+  height: 40px;
+  background: no-repeat center url('../img/trash.svg');
 }
