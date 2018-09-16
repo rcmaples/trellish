@@ -229,6 +229,8 @@ li {
   margin: 12px 0px;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
   /* offset-x | offset-y | blur-radius | spread-radius | color */
+  display: flex;
+  justify-content: space-between;
 }
 .card .breakword {
   display: inline-block;
