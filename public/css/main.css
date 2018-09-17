@@ -4,7 +4,7 @@
 }
 
 body {
-  min-width: 365px;
+  min-width: 300px;
   font-family: 'Open Sans', sans-serif;
   height: 97.93vh;
   background: rgb(2, 0, 36, 1);
@@ -18,11 +18,18 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  padding-left: 5px;
-  padding-right: 5px;
+  /* padding-left: 5px;
+  padding-right: 5px; */
   display: flex;
   flex-direction: column;
 }
+
+/* @media only screen and (max-width: 500px) {
+  body {
+    background-color: #403c3b;
+    max-width: 480px;
+  }
+} */
 
 header {
   display: flex;
@@ -35,6 +42,7 @@ main {
   flex: 1 1 auto;
   position: relative;
   overflow-y: auto;
+  /* margin-left: -4px; */
 }
 
 /* Header settings */
@@ -124,12 +132,19 @@ sdf
 
 /* Boards  & Cards */
 
+ul {
+  width: 100%;
+  padding: 3px;
+  padding-inline-start: 3px;
+}
+
 li {
   list-style: none;
 }
 
 .board-container {
-  display: none !important; /* TODO: REMOVE THIS LINE AFTER DEV */
+  /* display: none !important; TODO: REMOVE THIS LINE AFTER DEV */
+  padding-inline-start: 0px;
   position: relative;
   flex: 1 1 auto;
   display: flex;
@@ -137,7 +152,7 @@ li {
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
-  padding: 5px; /* this */
+  /* padding: 5px; this */
 }
 
 .board-container::-webkit-scrollbar-track {
@@ -160,11 +175,32 @@ li {
 .board {
   flex: 0 0 auto;
   margin: 5px;
-  height: 725px;
-  width: 360px;
+  min-height: 725px;
+  max-height: 725px;
+  min-width: 296px;
+  max-width: 360px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.75);
   overflow-y: auto;
+}
+
+@media only screen and (max-width: 500px) {
+  .board-container {
+    flex: 1 0 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-direction: column;
+  }
+
+  .board {
+    min-height: 725px;
+    max-height: unset;
+    overflow-y: visible;
+  }
+}
+
+.board ul {
+  padding-inline-start: 15px;
 }
 
 .board::-webkit-scrollbar {
