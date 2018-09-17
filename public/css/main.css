@@ -139,16 +139,19 @@ ul {
 }
 
 li {
+  width: 345px;
   list-style: none;
 }
 
 .board-container {
-  /* display: none !important; TODO: REMOVE THIS LINE AFTER DEV */
+  /*display: none !important; /*TODO: REMOVE THIS LINE AFTER DEV */
+  padding-left: -0px !important;
   padding-inline-start: 0px;
   position: relative;
   flex: 1 1 auto;
   display: flex;
   flex-direction: row;
+  justify-content: stretch;
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
@@ -199,7 +202,8 @@ li {
   }
 }
 
-.board ul {
+ul {
+  margin-left: 0px;
   padding-inline-start: 15px;
 }
 
@@ -342,4 +346,127 @@ li {
   width: 40px;
   height: 40px;
   background: no-repeat center url('../img/trash.svg');
+}
+
+/* FORM STYLES */
+
+form {
+  padding: 20px 20px 20px 20px;
+}
+
+.welcomeBtn {
+  display: inline-block;
+  padding: 0 10px 0 10px;
+}
+
+label {
+  float: left;
+  color: #fff;
+  display: block;
+  margin: 10px 0 10px 0;
+  font-size: 24px;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+textarea {
+  background-color: #ffffff;
+  color: #333;
+  font-size: 24px;
+  width: 96%;
+  padding: 4px 6px;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+}
+
+input[type='submit']:hover,
+a:hover,
+button:hover {
+  cursor: pointer;
+}
+
+input[type='submit'],
+a.add,
+button,
+a.show {
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 8px;
+  border: none;
+  padding: 0px;
+  margin-top: 10px;
+  /* font-family: 'Oswald', 'Futura', sans-serif; */
+  font-size: 18px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+input[type='submit'],
+a.add,
+.buttonRight {
+  float: right;
+}
+
+input[type='text']:focus,
+input[type='password']:focus,
+textarea:focus {
+  border: 1px solid #fff;
+  background-color: #fff;
+  outline: none;
+}
+
+input[type='submit']:hover,
+a.add:hover,
+a.show:hover {
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+fieldset {
+  border: none;
+}
+
+legend {
+  color: #fff;
+  font-size: 24px;
+  font-weight: normal;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  display: inline-block;
+  /* margin: 0 0 23px 0; */
+}
+
+#welcome {
+  display: block;
+  padding: 0 20px 20px 20px;
+  font-size: 24px;
+  text-align: center;
+}
+
+#welcome p {
+  display: block;
+}
+
+.welcomeBtn {
+  display: inline-block;
+  padding: 0 10px 0 10px;
+}
+
+#welcome,
+#signup,
+#confirmation,
+#signin {
+  display: block;
+  text-align: center;
+  max-width: 480px;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.js-hidden {
+  display: none;
 }

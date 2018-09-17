@@ -43,20 +43,59 @@
   <main>
 
     <!-- WECLOME -->
-    <section id="welcome">
-
+    <section id="welcome" class="view welcome">
+      <p>Welcome, please sign in.<br />Sign up if you do not have an account.</p>
+      <button class="js-signup welcomeBtn">Sign Up</button>
+      <button class="js-signin welcomeBtn">Sign In</button>
     </section>
 
 
     <!-- SIGN UP -->
     <section id="signup">
+      <form id="signup" class="view">
+        <fieldset>
 
+          <legend>Sign Up:</legend>
+
+          <label for="newEmailAddress">Enter your email address:</label>
+          <input type="email" id="newEmailAddress" name="newEmailAddress" autocomplete="username">
+
+          <label for="newPassword">Enter your password:</label>
+          <input type="password" id="newPassword" name="newPassword" autocomplete="new-password">
+
+          <button type="submit" class="buttonRight">Sign Up</button>
+          <p>Already have an account? <a href="" class="viewsignin signinlink">Sign In</a></p>
+        </fieldset>
+      </form>
     </section>
 
+    <!-- SIGN UP CONFIRMATION -->
+    <form id="confirmation" class="view">
+      <fieldset>
+        <legend>Success!</legend>
+        <p>Your acount is ready.</p>
+        <button type="submit">Sign In</button>
+      </fieldset>
+    </form>
 
-    <!-- SIGN IN -->
+
+    <!-- SIGN IN FORM -->
     <section id="signin">
+      <form id="signin" class="view">
+        <fieldset>
 
+          <legend>Sign In:</legend>
+
+          <label for="emailAddress">Enter your email address:</label>
+          <input type="email" id="emailAddress" name="emailAddress" autocomplete="username">
+
+          <label for="password">Enter your password:</label>
+          <input type="password" id="password" name="password" autocomplete="current-password">
+
+          <button type="submit" class="buttonRight">Sign In </button>
+
+        </fieldset>
+      </form>
     </section>
 
 
@@ -86,259 +125,6 @@
               <div class="priority"></div>
               <div class="trash"></div>
             </li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-          </ul>
-        </li>
-        <li class="board">
-          <div class="board-header">
-            <div class="collapse open"></div>
-            <h2>Todo:</h2> <!-- max 18 characters plus `:`-->
-            <div class="add-item"></div>
-          </div>
-
-          <ul>
-            <!-- wrap text after 19 characters; max length 39 chars -->
-            <li class="card">
-              <div class='breakword'>wrap text after 19 chars; max length 39</div>
-              <div class="edit-item"></div>
-            </li>
-            <li class="card complete">this is a completed thing</li>
-            <li class="card favorite">this is a favorited thing</li>
-            <li class="card priority">this is priority thing</li>
-            <li class="card edit">
-              <div class="edit"></div>
-              <div class="complete"></div>
-              <div class="favorite"></div>
-              <div class="priority"></div>
-              <div class="trash"></div>
-            </li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-          </ul>
-        </li>
-        <li class="board">
-          <div class="board-header">
-            <div class="collapse open"></div>
-            <h2>Todo:</h2> <!-- max 18 characters plus `:`-->
-            <div class="add-item"></div>
-          </div>
-
-          <ul>
-            <!-- wrap text after 19 characters; max length 39 chars -->
-            <li class="card">
-              <div class='breakword'>wrap text after 19 chars; max length 39</div>
-              <div class="edit-item"></div>
-            </li>
-            <li class="card complete">this is a completed thing</li>
-            <li class="card favorite">this is a favorited thing</li>
-            <li class="card priority">this is priority thing</li>
-            <li class="card edit">
-              <div class="edit"></div>
-              <div class="complete"></div>
-              <div class="favorite"></div>
-              <div class="priority"></div>
-              <div class="trash"></div>
-            </li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-          </ul>
-        </li>
-        <li class="board">
-          <div class="board-header">
-            <div class="collapse open"></div>
-            <h2>Todo:</h2> <!-- max 18 characters plus `:`-->
-            <div class="add-item"></div>
-          </div>
-
-          <ul>
-            <!-- wrap text after 19 characters; max length 39 chars -->
-            <li class="card">
-              <div class='breakword'>wrap text after 19 chars; max length 39</div>
-              <div class="edit-item"></div>
-            </li>
-            <li class="card complete">this is a completed thing</li>
-            <li class="card favorite">this is a favorited thing</li>
-            <li class="card priority">this is priority thing</li>
-            <li class="card edit">
-              <div class="edit"></div>
-              <div class="complete"></div>
-              <div class="favorite"></div>
-              <div class="priority"></div>
-              <div class="trash"></div>
-            </li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-          </ul>
-        </li>
-        <li class="board">
-          <div class="board-header">
-            <div class="collapse open"></div>
-            <h2>Todo:</h2> <!-- max 18 characters plus `:`-->
-            <div class="add-item"></div>
-          </div>
-
-          <ul>
-            <!-- wrap text after 19 characters; max length 39 chars -->
-            <li class="card">
-              <div class='breakword'>wrap text after 19 chars; max length 39</div>
-              <div class="edit-item"></div>
-            </li>
-            <li class="card complete">this is a completed thing</li>
-            <li class="card favorite">this is a favorited thing</li>
-            <li class="card priority">this is priority thing</li>
-            <li class="card edit">
-              <div class="edit"></div>
-              <div class="complete"></div>
-              <div class="favorite"></div>
-              <div class="priority"></div>
-              <div class="trash"></div>
-            </li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-          </ul>
-        </li>
-        <li class="board">
-          <div class="board-header">
-            <div class="collapse open"></div>
-            <h2>Todo:</h2> <!-- max 18 characters plus `:`-->
-            <div class="add-item"></div>
-          </div>
-
-          <ul>
-            <!-- wrap text after 19 characters; max length 39 chars -->
-            <li class="card">
-              <div class='breakword'>wrap text after 19 chars; max length 39</div>
-              <div class="edit-item"></div>
-            </li>
-            <li class="card complete">this is a completed thing</li>
-            <li class="card favorite">this is a favorited thing</li>
-            <li class="card priority">this is priority thing</li>
-            <li class="card edit">
-              <div class="edit"></div>
-              <div class="complete"></div>
-              <div class="favorite"></div>
-              <div class="priority"></div>
-              <div class="trash"></div>
-            </li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-          </ul>
-        </li>
-        <li class="board">
-          <div class="board-header">
-            <div class="collapse open"></div>
-            <h2>Todo:</h2> <!-- max 18 characters plus `:`-->
-            <div class="add-item"></div>
-          </div>
-
-          <ul>
-            <!-- wrap text after 19 characters; max length 39 chars -->
-            <li class="card">
-              <div class='breakword'>wrap text after 19 chars; max length 39</div>
-              <div class="edit-item"></div>
-            </li>
-            <li class="card complete">this is a completed thing</li>
-            <li class="card favorite">this is a favorited thing</li>
-            <li class="card priority">this is priority thing</li>
-            <li class="card edit">
-              <div class="edit"></div>
-              <div class="complete"></div>
-              <div class="favorite"></div>
-              <div class="priority"></div>
-              <div class="trash"></div>
-            </li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-          </ul>
-        </li>
-        <li class="board">
-          <div class="board-header">
-            <div class="collapse open"></div>
-            <h2>Todo:</h2> <!-- max 18 characters plus `:`-->
-            <div class="add-item"></div>
-          </div>
-
-          <ul>
-            <!-- wrap text after 19 characters; max length 39 chars -->
-            <li class="card">
-              <div class='breakword'>wrap text after 19 chars; max length 39</div>
-              <div class="edit-item"></div>
-            </li>
-            <li class="card complete">this is a completed thing</li>
-            <li class="card favorite">this is a favorited thing</li>
-            <li class="card priority">this is priority thing</li>
-            <li class="card edit">
-              <div class="edit"></div>
-              <div class="complete"></div>
-              <div class="favorite"></div>
-              <div class="priority"></div>
-              <div class="trash"></div>
-            </li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-          </ul>
-        </li>
-        <li class="board">
-          <div class="board-header">
-            <div class="collapse open"></div>
-            <h2>Todo:</h2> <!-- max 18 characters plus `:`-->
-            <div class="add-item"></div>
-          </div>
-
-          <ul>
-            <!-- wrap text after 19 characters; max length 39 chars -->
-            <li class="card">
-              <div class='breakword'>wrap text after 19 chars; max length 39</div>
-              <div class="edit-item"></div>
-            </li>
-            <li class="card complete">this is a completed thing</li>
-            <li class="card favorite">this is a favorited thing</li>
-            <li class="card priority">this is priority thing</li>
-            <li class="card edit">
-              <div class="edit"></div>
-              <div class="complete"></div>
-              <div class="favorite"></div>
-              <div class="priority"></div>
-              <div class="trash"></div>
-            </li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
-            <li class="card">this is 6 thing</li>
             <li class="card">this is 6 thing</li>
           </ul>
         </li>
