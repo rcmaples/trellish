@@ -178,7 +178,7 @@ li {
 .board {
   flex: 0 0 auto;
   margin: 5px;
-  min-height: 725px;
+  min-height: min-content;
   max-height: 725px;
   min-width: 296px;
   max-width: 360px;
@@ -196,9 +196,11 @@ li {
   }
 
   .board {
-    min-height: 725px;
-    max-height: unset;
+    min-height: min-content;
+    max-height: min-content;
     overflow-y: visible;
+    width: 100%;
+    margin: 16px auto 16px auto;
   }
 }
 
