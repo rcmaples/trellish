@@ -114,13 +114,15 @@ button {
   margin: 0 5px 0 5px;
 }
 
-#addBoardButton {
+.addBoardButton {
+  display: inline-block;
   width: 60px;
   height: 60px;
   background: no-repeat center url('../img/add-board-button.svg');
 }
 
-#accountButton {
+.accountButton {
+  display: inline-block;
   width: 60px;
   height: 60px;
   background: no-repeat center url('../img/account-avatar.svg');
@@ -471,4 +473,39 @@ legend {
 
 .js-hidden {
   display: none;
+}
+
+.jq-dropdown.jq-dropdown-tip {
+  margin-top: 40px !important;
+}
+
+.jq-dropdown .jq-dropdown-menu,
+.jq-dropdown .jq-dropdown-panel {
+  background: rgba(100, 100, 100, 0.5) !important;
+  padding: 0px;
+}
+
+.jq-dropdown .jq-dropdown-menu label,
+.jq-dropdown .jq-dropdown-panel label {
+  font-size: unset;
+  float: unset;
+  margin: -5px 0px 5px 0px;
+}
+
+.jq-dropdown .jq-dropdown-menu form,
+.jq-dropdown .jq-dropdown-panel form {
+  padding: unset;
+}
+
+#nav button {
+  margin: -40px 10px 5px 10px;
+  background-color: transparent;
+  width: 60px;
+}
+
+.signout {
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+  width: 100%;
 }
