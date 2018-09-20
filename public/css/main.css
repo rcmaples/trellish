@@ -93,9 +93,7 @@ input[type='text'] {
   border-radius: 5px;
 }
 button[type='submit'] {
-  font-size: 22px;
-  border-radius: 5px;
-  /* height: 30px; */
+  margin-right: 10px;
 }
 
 button {
@@ -121,18 +119,46 @@ button {
   background: no-repeat center url('../img/add-board-button.svg');
 }
 
+.addCardButton {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background: no-repeat center url('../img/add-list-item.svg');
+}
+
 .accountButton {
   display: inline-block;
   width: 60px;
   height: 60px;
+  margin: 0px;
   background: no-repeat center url('../img/account-avatar.svg');
+}
+
+button.jq-dropdown-open {
+  background-color: transparent;
+}
+
+button.add-card {
+  background-color: transparent;
+  margin-right: 10px;
+  width: 32px;
+  height: 32px;
 }
 
 /* Welcome and Signup/Signin */
 
-sdf
-
 /* Boards  & Cards */
+
+.addCardForm,
+.addCardForm::after {
+  max-width: 325px;
+  display: inline;
+}
+
+.flip {
+  transform: rotate(180deg);
+  transition: all 0.3s ease;
+}
 
 ul {
   width: 100%;
@@ -251,6 +277,7 @@ ul {
   width: 32px;
   height: 32px;
   background: no-repeat center url('../img/collapse.svg');
+  cursor: pointer;
 }
 
 .board .add-item {
@@ -356,11 +383,6 @@ ul {
 
 form {
   padding: 20px 20px 20px 20px;
-}
-
-.welcomeBtn {
-  display: inline-block;
-  padding: 0 10px 0 10px;
 }
 
 label {
@@ -475,14 +497,14 @@ legend {
   display: none;
 }
 
-.jq-dropdown.jq-dropdown-tip {
+.jq-dropdown.jq-dropdown-tip:not(.addCardForm) {
   margin-top: 40px !important;
 }
 
 .jq-dropdown .jq-dropdown-menu,
-.jq-dropdown .jq-dropdown-panel {
+.jq-dropdown .jq-dropdown-panel:not(.card-panel) {
   background: rgba(100, 100, 100, 0.5) !important;
-  padding: 0px;
+  padding: 10px;
 }
 
 .jq-dropdown .jq-dropdown-menu label,
@@ -508,4 +530,17 @@ legend {
   text-align: center;
   display: block;
   width: 100%;
+}
+
+.card-panel {
+  min-width: 160px;
+  max-width: 360px;
+  list-style: none;
+  background: #969696 !important;
+  border: solid 1px #636363;
+  border-radius: 4px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  overflow: visible;
+  padding: 4px 0;
+  margin: 0;
 }
