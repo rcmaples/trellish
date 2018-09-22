@@ -145,9 +145,33 @@ button.add-card {
   height: 32px;
 }
 
+button.collapse-board {
+  background-color: transparent;
+  margin-left: 10px;
+  width: 32px;
+  height: 32px;
+}
+
 /* Welcome and Signup/Signin */
 
 /* Boards  & Cards */
+
+.edit-item,
+.edit-icon,
+.edit-card,
+.complete-card,
+.favorite-card,
+.prioritize-card,
+.trash-card {
+  margin: 0px;
+  background-color: transparent;
+  width: 40px;
+  height: 40px;
+}
+
+.invert {
+  filter: invert(1);
+}
 
 .addCardForm,
 .addCardForm::after {
@@ -234,7 +258,7 @@ li {
 
 ul {
   margin-left: 0px;
-  padding-inline-start: 15px;
+  /* padding-inline-start: 15px; */
 }
 
 .board::-webkit-scrollbar {
@@ -273,11 +297,9 @@ ul {
 
 .board .collapse {
   display: inline-flex;
-  margin: 10px;
   width: 32px;
   height: 32px;
   background: no-repeat center url('../img/collapse.svg');
-  cursor: pointer;
 }
 
 .board .add-item {
@@ -302,7 +324,7 @@ ul {
   background: rgba(255, 255, 255, 1);
   border: 2px solid grey;
   border-radius: 5px;
-  margin: 12px 0px;
+  margin: 12px auto;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
   /* offset-x | offset-y | blur-radius | spread-radius | color */
   display: flex;
@@ -316,7 +338,7 @@ ul {
   white-space: pre-wrap;
 }
 
-.edit-item {
+.edit-item-icon {
   width: 40px;
   height: 40px;
   background: url('../img/edit.svg');
@@ -339,41 +361,43 @@ ul {
   display: flex;
   justify-content: space-between;
   background: #ff5489;
-  color: #ffffff;
+  /* color: #ffffff; */
 }
 
-.card.edit .edit {
+.edit-icon {
+  display: inline-flex;
   width: 40px;
   height: 40px;
   background-color: white;
-  -webkit-mask-image: url('../img/edit.svg');
-  mask-image: url('../img/edit.svg');
-  /* background: no-repeat center url('../img/edit.svg'); */
+  background: no-repeat center url('../img/edit.svg');
 }
 .card.edit .edit:before {
   color: white;
 }
 
-.card.edit .complete {
+.complete-icon {
+  display: inline-flex;
   width: 40px;
   height: 40px;
-
   background: no-repeat center url('../img/complete.svg');
 }
 
-.card.edit .favorite {
+.favorite-icon {
+  display: inline-flex;
   width: 40px;
   height: 40px;
   background: no-repeat center url('../img/favorite.svg');
 }
 
-.card.edit .priority {
+.priority-icon {
+  display: inline-flex;
   width: 40px;
   height: 40px;
   background: no-repeat center url('../img/priority.svg');
 }
 
-.card.edit .trash {
+.trash-icon {
+  display: inline-flex;
   width: 40px;
   height: 40px;
   background: no-repeat center url('../img/trash.svg');

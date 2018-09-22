@@ -102,7 +102,10 @@
       <ul class="board-container">
         <li class="board">
           <div class="board-header">
-            <div class="collapse open"></div>
+            <!-- <div class="collapse open"></div> -->
+            <button class="collapse-board">
+              <span class="collapse"></span>
+            </button>
             <h2>Todo:</h2> <!-- max 18 characters plus `:`-->
             <button class="add-card" data-jq-dropdown="#jq-dropdown-3">
               <span class="addCardButton"></span>
@@ -113,17 +116,27 @@
             <!-- wrap text after 19 characters; max length 39 chars -->
             <li class="card">
               <div class='breakword'>wrap text after 19 chars; max length 39</div>
-              <div class="edit-item"></div>
+              <button class="edit-item"><span class="edit-item-icon"></span></button>
             </li>
             <li class="card complete">this is a completed thing</li>
             <li class="card favorite">this is a favorited thing</li>
             <li class="card priority">this is priority thing</li>
             <li class="card edit">
-              <div class="edit"></div>
-              <div class="complete"></div>
-              <div class="favorite"></div>
-              <div class="priority"></div>
-              <div class="trash"></div>
+              <button class="edit-card">
+                <span class="edit-icon invert"></span>
+              </button>
+              <button class="complete-card">
+                <span class="complete-icon"></span>
+              </button>
+              <button class="favorite-card">
+                <span class="favorite-icon"></span>
+              </button>
+              <button class="prioritize-card">
+                <span class="priority-icon"></span>
+              </button>
+              <button class="trash-card">
+                <span class="trash-icon"></span>
+              </button>
             </li>
             <li class="card">this is 6 thing</li>
           </ul>
