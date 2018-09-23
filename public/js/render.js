@@ -19,6 +19,7 @@
 const render = {
   // Render the Page:
   page: function(state) {
+    $('.edit-menu').hide();
     $('.view').hide();
     // set STORE.dev to TRUE to make use of state identifying borders
     if (state.dev) {
@@ -43,10 +44,28 @@ const render = {
     }
   },
 
-  collapseBoard: function() {
-    $('.collapse').on('click', function(event, data) {
-      $(this).toggleClass('flip');
-      $('.slide').slideToggle();
-    });
+  editMenu: function() {
+    // see https://repl.it/@rcmaples/RingedGrimVertex?lite=1
+    $('.edit-menu')
+      .show()
+      .toggle('slide', { direction: 'right' }, 500);
+  },
+
+  hideMenu: function() {
+    $('.edit-menu')
+      .toggle('slide', { direction: 'left' }, 500)
+      .hide();
+  },
+
+  collapseBoard: function(event) {
+    let target = $(event.target);
+    target.toggleClass('flip');
+
+    target
+      .closest('.board')
+      .find('ul')
+      // .toggleClass('slide');
+      .slideToggle();
+    // target.closest('.slide').slideToggle();
   }
 };

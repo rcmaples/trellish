@@ -83,7 +83,7 @@ const handle = {
   /* collapse board */
   collapseBoard: function(event) {
     event.preventDefault();
-    alert('handing board collapse');
+    render.collapseBoard(event);
   },
 
   /* open board */
@@ -101,13 +101,13 @@ const handle = {
   /* open edit menu */
   cardEditMenu: function(event) {
     event.preventDefault();
-    alert('presenting edit menu');
+    render.editMenu();
   },
 
   /* edit */
   editCardItem: function(event) {
     event.preventDefault();
-    alert('ready to edit item');
+    render.hideMenu();
   },
   /* mark complete */
   completeCardItem: function(event) {

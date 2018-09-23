@@ -232,7 +232,8 @@ li {
 .board {
   flex: 0 0 auto;
   margin: 5px;
-  min-height: min-content;
+  /* min-height: min-content; */
+  height: auto;
   max-height: 725px;
   min-width: 296px;
   max-width: 360px;
@@ -375,11 +376,15 @@ ul {
   background: #ff7c7c;
 }
 
-.card.edit {
+/* .card > .edit-menu { */
+.edit-menu {
+  width: 110%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
   background: #ff5489;
-  /* color: #ffffff; */
+  margin: -10px;
+  /* display: none; */
 }
 
 .edit-icon {
@@ -389,7 +394,7 @@ ul {
   background-color: white;
   background: no-repeat center url('../img/edit.svg');
 }
-.card.edit .edit:before {
+.card > .edit .edit:before {
   color: white;
 }
 
@@ -540,7 +545,7 @@ legend {
 }
 
 .jq-dropdown.jq-dropdown-tip:not(.addCardForm) {
-  margin-top: 40px !important;
+  margin-top: 10px !important;
 }
 
 .jq-dropdown .jq-dropdown-menu,
@@ -586,4 +591,13 @@ legend {
   overflow: visible;
   padding: 4px 0;
   margin: 0;
+}
+
+.slide {
+  display: none;
+}
+
+/*  TODO: REMOVE THIS AFTER MVP */
+.board-header h2 {
+  margin: 10px;
 }

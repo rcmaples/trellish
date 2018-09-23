@@ -51,15 +51,11 @@
     <!-- SIGN UP -->
     <form id="signup" class="view">
       <fieldset>
-
         <legend>Sign Up:</legend>
-
         <label for="newEmailAddress">Enter your email address:</label>
         <input type="email" id="newEmailAddress" name="newEmailAddress" autocomplete="username">
-
         <label for="newPassword">Enter your password:</label>
         <input type="password" id="newPassword" name="newPassword" autocomplete="new-password">
-
         <button type="submit" class="buttonRight">Sign Up</button>
         <p>Already have an account? <a href="" class="viewsignin signinlink">Sign In</a></p>
       </fieldset>
@@ -78,17 +74,13 @@
     <!-- SIGN IN FORM -->
     <form id="signin" class="view">
       <fieldset>
-
         <legend>Sign In:</legend>
-
         <label for="emailAddress">Enter your email address:</label>
         <input type="email" id="emailAddress" name="emailAddress" autocomplete="username">
-
         <label for="password">Enter your password:</label>
         <input type="password" id="password" name="password" autocomplete="current-password">
-
         <button type="submit" class="buttonRight">Sign In </button>
-
+        <p>Don't have an account? <a href="" class="viewsignup signuplink">Sign Up</a></p>
       </fieldset>
     </form>
 
@@ -98,45 +90,105 @@
       <ul class="board-container">
         <li class="board">
           <div class="board-header">
-            <!-- <div class="collapse open"></div> -->
-            <button class="collapse-board" aria-label="collapse board">
+            <!-- <button class="collapse-board" aria-label="collapse board">
               <span class="collapse" aria-hidden="true" focusable="false"></span>
+            </button> -->
+            <h2>backlog:</h2> <!-- max 18 characters plus `:`-->
+            <button class="add-card" data-jq-dropdown="#jq-dropdown-3" aria-label="add card">
+              <span class="
+              addCardButton" aria-hidden="true" focusable="false"></span>
             </button>
-            <h2>Todo:</h2> <!-- max 18 characters plus `:`-->
+          </div>
+          <ul>
+            <!-- wrap text after 19 characters; max length 39 chars -->
+            <li class="card">
+              <div class='breakword'>wrap text after 19 chars; max length 39</div>
+              <!-- <button class="edit-item" aria-label="edit card"><span class="edit-item-icon" aria-hidden="true" ,
+                  focusable="false"></span></button> -->
+            </li>
+            <li class="card complete">
+              <div class="breakword">this is a completed thing</div>
+              <!-- <button class="edit-item" aria-label="edit card">
+                <span class="edit-item-icon" aria-hidden="true" , focusable="false"></span>
+              </button> -->
+            </li>
+            <li class="card favorite">
+              <div class="breakword">this is a favorited thing</div>
+              <!-- <button class="edit-item" aria-label="edit card">
+                <span class="edit-item-icon" aria-hidden="true" , focusable="false"></span>
+              </button> -->
+            </li>
+            <li class="card priority">
+              <div class="breakword">this is a priority thing</div>
+              <!-- <button class="edit-item" aria-label="edit card">
+                <span class="edit-item-icon" aria-hidden="true" , focusable="false">
+                </span>
+              </button> -->
+            </li>
+            <li class="card">
+              <div class="breakword">this is a thing</div>
+              <!-- <button class="edit-item" aria-label="edit card">
+                <span class="edit-item-icon" aria-hidden="true" , focusable="false"></span>
+              </button> -->
+            </li>
+            <li class="card">
+              <div class="breakword">this thing has a menu</div>
+              <!-- <button class="edit-item" aria-label="edit card">
+                <span class="edit-item-icon" aria-hidden="true" , focusable="false"></span>
+              </button> -->
+            </li>
+          </ul>
+        </li>
+        <li class="board">
+          <div class="board-header">
+            <!-- <button class="collapse-board" aria-label="collapse board">
+              <span class="collapse" aria-hidden="true" focusable="false"></span>
+            </button> -->
+            <h2>backlog:</h2> <!-- max 18 characters plus `:`-->
             <button class="add-card" data-jq-dropdown="#jq-dropdown-3" aria-label="add card">
               <span class="
               addCardButton" aria-hidden="true" focusable="false"></span>
             </button>
           </div>
 
-          <ul class="slide">
+          <ul>
             <!-- wrap text after 19 characters; max length 39 chars -->
-            <li class="card" draggable="true">
+            <li class="card">
               <div class='breakword'>wrap text after 19 chars; max length 39</div>
-              <button class="edit-item" aria-label="edit card"><span class="edit-item-icon" aria-hidden="true" ,
-                  focusable="false"></span></button>
+              <!-- <button class="edit-item" aria-label="edit card"><span class="edit-item-icon" aria-hidden="true" ,
+                  focusable="false"></span></button> -->
             </li>
-            <li class="card complete" draggable="true">this is a completed thing</li>
-            <li class="card favorite" draggable="true">this is a favorited thing</li>
-            <li class="card priority" draggable="true">this is priority thing</li>
-            <li class="card edit" draggable="true">
-              <button class="edit-card" aria-label="edit card">
-                <span class="edit-icon invert" aria-hidden="true" focusable="false"></span>
-              </button>
-              <button class="complete-card" aria-label="complete card">
-                <span class="complete-icon" aria-hidden="true" focusable="false"></span>
-              </button>
-              <button class="favorite-card" aria-label="favorite card">
-                <span class="favorite-icon" aria-hidden="true" focusable="false"></span>
-              </button>
-              <button class="prioritize-card" aria-label="prioritize card">
-                <span class="priority-icon" aria-hidden="true" focusable="false"></span>
-              </button>
-              <button class="trash-card" aria-label="delete card">
-                <span class="trash-icon" aria-hidden="true" focusable="false"></span>
-              </button>
+            <li class="card complete">
+              <div class="breakword">this is a completed thing</div>
+              <!-- <button class="edit-item" aria-label="edit card">
+                <span class="edit-item-icon" aria-hidden="true" , focusable="false"></span>
+              </button> -->
             </li>
-            <li class="card" draggable="true">this is 6 thing</li>
+            <li class="card favorite">
+              <div class="breakword">this is a favorited thing</div>
+              <!-- <button class="edit-item" aria-label="edit card">
+                <span class="edit-item-icon" aria-hidden="true" , focusable="false"></span>
+              </button> -->
+            </li>
+            <li class="card priority">
+              <div class="breakword">this is a priority thing</div>
+              <!-- <button class="edit-item" aria-label="edit card">
+                <span class="edit-item-icon" aria-hidden="true" , focusable="false">
+                </span>
+              </button> -->
+            </li>
+            <li class="card">
+              <div class="breakword">this is a thing</div>
+              <!-- <button class="edit-item" aria-label="edit card">
+                <span class="edit-item-icon" aria-hidden="true" , focusable="false"></span>
+              </button> -->
+            </li>
+            <li class="card">
+              <div class="breakword">this thing has a menu</div>
+              <!-- <button class="edit-item" aria-label="edit card">
+                <span class="edit-item-icon" aria-hidden="true" , focusable="false"></span>
+              </button> -->
+            </li>
           </ul>
         </li>
       </ul>
@@ -170,6 +222,23 @@
     </div>
   </div>
 
+  <div class="edit-menu">
+    <button class="edit-card" aria-label="edit card">
+      <span class="edit-icon invert" aria-hidden="true" focusable="false"></span>
+    </button>
+    <button class="complete-card" aria-label="complete card">
+      <span class="complete-icon" aria-hidden="true" focusable="false"></span>
+    </button>
+    <button class="favorite-card" aria-label="favorite card">
+      <span class="favorite-icon" aria-hidden="true" focusable="false"></span>
+    </button>
+    <button class="prioritize-card" aria-label="prioritize card">
+      <span class="priority-icon" aria-hidden="true" focusable="false"></span>
+    </button>
+    <button class="trash-card" aria-label="delete card">
+      <span class="trash-icon" aria-hidden="true" focusable="false"></span>
+    </button>
+  </div>
 
   <script type="text/javascript" src="./js/app.js"></script>
   <script type="text/javascript" src="./js/handle.js"></script>
