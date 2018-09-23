@@ -34,7 +34,7 @@ let STORE = {};
 function jinkies() {
   STORE = {
     dev: true,
-    view: 'welcome',
+    view: 'welcome', // welcome | signup | confirmtion |
     backTo: null,
     list: [],
     item: {},
@@ -51,7 +51,7 @@ function jinkies() {
   // if (localStorage.getItem('token')) {
   //   handle.preAuth(localStorage.getItem('token'));
   // } else {
-  //   render.page(STORE);
+  render.page(STORE);
   // }
 
   // WELCOME
