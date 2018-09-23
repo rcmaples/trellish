@@ -30,15 +30,16 @@
   <header>
     <h1><img srcset="img/horiz.png 1x, img/horiz@2x.png 2x" alt="Trellish: get sheep done logo"></h1>
     <div id="nav">
-      <button class="" data-jq-dropdown="#jq-dropdown-1">
-        <span class="addBoardButton"></span>
+      <button class="" data-jq-dropdown="#jq-dropdown-1" aria-label="add board">
+        <span class="addBoardButton" aria-hidden="true" focusable="false"></span>
       </button>
-      <button class="" data-jq-dropdown="#jq-dropdown-2">
-        <span class="accountButton"></span>
+      <button class="" data-jq-dropdown="#jq-dropdown-2" aria-label="account menu">
+        <span class="accountButton" aria-hidden="true" focusable="false"></span>
       </button>
     </div>
   </header>
   <main>
+
 
     <!-- WECLOME -->
     <section id="welcome" class="view welcome">
@@ -103,42 +104,44 @@
         <li class="board">
           <div class="board-header">
             <!-- <div class="collapse open"></div> -->
-            <button class="collapse-board">
-              <span class="collapse"></span>
+            <button class="collapse-board" aria-label="collapse board">
+              <span class="collapse" aria-hidden="true" focusable="false"></span>
             </button>
             <h2>Todo:</h2> <!-- max 18 characters plus `:`-->
-            <button class="add-card" data-jq-dropdown="#jq-dropdown-3">
-              <span class="addCardButton"></span>
+            <button class="add-card" data-jq-dropdown="#jq-dropdown-3" aria-label="add card">
+              <span class="
+              addCardButton" aria-hidden="true" focusable="false"></span>
             </button>
           </div>
 
           <ul class="slide">
             <!-- wrap text after 19 characters; max length 39 chars -->
-            <li class="card">
+            <li class="card" draggable="true">
               <div class='breakword'>wrap text after 19 chars; max length 39</div>
-              <button class="edit-item"><span class="edit-item-icon"></span></button>
+              <button class="edit-item" aria-label="edit card"><span class="edit-item-icon" aria-hidden="true" ,
+                  focusable="false"></span></button>
             </li>
-            <li class="card complete">this is a completed thing</li>
-            <li class="card favorite">this is a favorited thing</li>
-            <li class="card priority">this is priority thing</li>
-            <li class="card edit">
-              <button class="edit-card">
-                <span class="edit-icon invert"></span>
+            <li class="card complete" draggable="true">this is a completed thing</li>
+            <li class="card favorite" draggable="true">this is a favorited thing</li>
+            <li class="card priority" draggable="true">this is priority thing</li>
+            <li class="card edit" draggable="true">
+              <button class="edit-card" aria-label="edit card">
+                <span class="edit-icon invert" aria-hidden="true" focusable="false"></span>
               </button>
-              <button class="complete-card">
-                <span class="complete-icon"></span>
+              <button class="complete-card" aria-label="complete card">
+                <span class="complete-icon" aria-hidden="true" focusable="false"></span>
               </button>
-              <button class="favorite-card">
-                <span class="favorite-icon"></span>
+              <button class="favorite-card" aria-label="favorite card">
+                <span class="favorite-icon" aria-hidden="true" focusable="false"></span>
               </button>
-              <button class="prioritize-card">
-                <span class="priority-icon"></span>
+              <button class="prioritize-card" aria-label="prioritize card">
+                <span class="priority-icon" aria-hidden="true" focusable="false"></span>
               </button>
-              <button class="trash-card">
-                <span class="trash-icon"></span>
+              <button class="trash-card" aria-label="delete card">
+                <span class="trash-icon" aria-hidden="true" focusable="false"></span>
               </button>
             </li>
-            <li class="card">this is 6 thing</li>
+            <li class="card" draggable="true">this is 6 thing</li>
           </ul>
         </li>
       </ul>

@@ -329,7 +329,23 @@ ul {
   /* offset-x | offset-y | blur-radius | spread-radius | color */
   display: flex;
   justify-content: space-between;
+  /* cursor: move; */
 }
+
+/* .card.over {
+  border: 2px dashed #000;
+}
+
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+/*-khtml-user-drag: element;
+  -webkit-user-drag: element;
+} */
+
 .card .breakword {
   display: inline-block;
   word-break: break-word;
