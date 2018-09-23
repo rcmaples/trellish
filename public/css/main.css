@@ -93,9 +93,7 @@ input[type='text'] {
   border-radius: 5px;
 }
 button[type='submit'] {
-  font-size: 22px;
-  border-radius: 5px;
-  /* height: 30px; */
+  margin-right: 10px;
 }
 
 button {
@@ -121,18 +119,70 @@ button {
   background: no-repeat center url('../img/add-board-button.svg');
 }
 
+.addCardButton {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background: no-repeat center url('../img/add-list-item.svg');
+}
+
 .accountButton {
   display: inline-block;
   width: 60px;
   height: 60px;
+  margin: 0px;
   background: no-repeat center url('../img/account-avatar.svg');
+}
+
+button.jq-dropdown-open {
+  background-color: transparent;
+}
+
+button.add-card {
+  background-color: transparent;
+  margin-right: 10px;
+  width: 32px;
+  height: 32px;
+}
+
+button.collapse-board {
+  background-color: transparent;
+  margin-left: 10px;
+  width: 32px;
+  height: 32px;
 }
 
 /* Welcome and Signup/Signin */
 
-sdf
-
 /* Boards  & Cards */
+
+.edit-item,
+.edit-icon,
+.edit-card,
+.complete-card,
+.favorite-card,
+.prioritize-card,
+.trash-card {
+  margin: 0px;
+  background-color: transparent;
+  width: 40px;
+  height: 40px;
+}
+
+.invert {
+  filter: invert(1);
+}
+
+.addCardForm,
+.addCardForm::after {
+  max-width: 325px;
+  display: inline;
+}
+
+.flip {
+  transform: rotate(180deg);
+  transition: all 0.3s ease;
+}
 
 ul {
   width: 100%;
@@ -208,7 +258,7 @@ li {
 
 ul {
   margin-left: 0px;
-  padding-inline-start: 15px;
+  /* padding-inline-start: 15px; */
 }
 
 .board::-webkit-scrollbar {
@@ -247,7 +297,6 @@ ul {
 
 .board .collapse {
   display: inline-flex;
-  margin: 10px;
   width: 32px;
   height: 32px;
   background: no-repeat center url('../img/collapse.svg');
@@ -275,12 +324,28 @@ ul {
   background: rgba(255, 255, 255, 1);
   border: 2px solid grey;
   border-radius: 5px;
-  margin: 12px 0px;
+  margin: 12px auto;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
   /* offset-x | offset-y | blur-radius | spread-radius | color */
   display: flex;
   justify-content: space-between;
+  /* cursor: move; */
 }
+
+/* .card.over {
+  border: 2px dashed #000;
+}
+
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+/*-khtml-user-drag: element;
+  -webkit-user-drag: element;
+} */
+
 .card .breakword {
   display: inline-block;
   word-break: break-word;
@@ -289,7 +354,7 @@ ul {
   white-space: pre-wrap;
 }
 
-.edit-item {
+.edit-item-icon {
   width: 40px;
   height: 40px;
   background: url('../img/edit.svg');
@@ -312,41 +377,43 @@ ul {
   display: flex;
   justify-content: space-between;
   background: #ff5489;
-  color: #ffffff;
+  /* color: #ffffff; */
 }
 
-.card.edit .edit {
+.edit-icon {
+  display: inline-flex;
   width: 40px;
   height: 40px;
   background-color: white;
-  -webkit-mask-image: url('../img/edit.svg');
-  mask-image: url('../img/edit.svg');
-  /* background: no-repeat center url('../img/edit.svg'); */
+  background: no-repeat center url('../img/edit.svg');
 }
 .card.edit .edit:before {
   color: white;
 }
 
-.card.edit .complete {
+.complete-icon {
+  display: inline-flex;
   width: 40px;
   height: 40px;
-
   background: no-repeat center url('../img/complete.svg');
 }
 
-.card.edit .favorite {
+.favorite-icon {
+  display: inline-flex;
   width: 40px;
   height: 40px;
   background: no-repeat center url('../img/favorite.svg');
 }
 
-.card.edit .priority {
+.priority-icon {
+  display: inline-flex;
   width: 40px;
   height: 40px;
   background: no-repeat center url('../img/priority.svg');
 }
 
-.card.edit .trash {
+.trash-icon {
+  display: inline-flex;
   width: 40px;
   height: 40px;
   background: no-repeat center url('../img/trash.svg');
@@ -356,11 +423,6 @@ ul {
 
 form {
   padding: 20px 20px 20px 20px;
-}
-
-.welcomeBtn {
-  display: inline-block;
-  padding: 0 10px 0 10px;
 }
 
 label {
@@ -475,14 +537,14 @@ legend {
   display: none;
 }
 
-.jq-dropdown.jq-dropdown-tip {
+.jq-dropdown.jq-dropdown-tip:not(.addCardForm) {
   margin-top: 40px !important;
 }
 
 .jq-dropdown .jq-dropdown-menu,
-.jq-dropdown .jq-dropdown-panel {
+.jq-dropdown .jq-dropdown-panel:not(.card-panel) {
   background: rgba(100, 100, 100, 0.5) !important;
-  padding: 0px;
+  padding: 10px;
 }
 
 .jq-dropdown .jq-dropdown-menu label,
@@ -508,4 +570,17 @@ legend {
   text-align: center;
   display: block;
   width: 100%;
+}
+
+.card-panel {
+  min-width: 160px;
+  max-width: 360px;
+  list-style: none;
+  background: #969696 !important;
+  border: solid 1px #636363;
+  border-radius: 4px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  overflow: visible;
+  padding: 4px 0;
+  margin: 0;
 }

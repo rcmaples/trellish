@@ -9,7 +9,7 @@
   <meta name="description" content="trellish">
   <meta name="author" content="RC Maples">
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
 
 
   <!-- <link rel="stylesheet" href="css/float-grid.css?v=1.0"> -->
@@ -30,15 +30,16 @@
   <header>
     <h1><img srcset="img/horiz.png 1x, img/horiz@2x.png 2x" alt="Trellish: get sheep done logo"></h1>
     <div id="nav">
-      <button class="jq-dropdown-open" data-jq-dropdown="#jq-dropdown-1">
-        <span class="addBoardButton"></span>
+      <button class="" data-jq-dropdown="#jq-dropdown-1" aria-label="add board">
+        <span class="addBoardButton" aria-hidden="true" focusable="false"></span>
       </button>
-      <button class="jq-dropdown-open" data-jq-dropdown="#jq-dropdown-2">
-        <span class="accountButton"></span>
+      <button class="" data-jq-dropdown="#jq-dropdown-2" aria-label="account menu">
+        <span class="accountButton" aria-hidden="true" focusable="false"></span>
       </button>
     </div>
   </header>
   <main>
+
 
     <!-- WECLOME -->
     <section id="welcome" class="view welcome">
@@ -49,7 +50,7 @@
 
 
     <!-- SIGN UP -->
-    <section id="signup">
+    <section>
       <form id="signup" class="view">
         <fieldset>
 
@@ -78,7 +79,7 @@
 
 
     <!-- SIGN IN FORM -->
-    <section id="signin">
+    <section>
       <form id="signin" class="view">
         <fieldset>
 
@@ -102,28 +103,45 @@
       <ul class="board-container">
         <li class="board">
           <div class="board-header">
-            <div class="collapse open"></div>
+            <!-- <div class="collapse open"></div> -->
+            <button class="collapse-board" aria-label="collapse board">
+              <span class="collapse" aria-hidden="true" focusable="false"></span>
+            </button>
             <h2>Todo:</h2> <!-- max 18 characters plus `:`-->
-            <div class="add-item"></div>
+            <button class="add-card" data-jq-dropdown="#jq-dropdown-3" aria-label="add card">
+              <span class="
+              addCardButton" aria-hidden="true" focusable="false"></span>
+            </button>
           </div>
 
           <ul class="slide">
             <!-- wrap text after 19 characters; max length 39 chars -->
-            <li class="card">
+            <li class="card" draggable="true">
               <div class='breakword'>wrap text after 19 chars; max length 39</div>
-              <div class="edit-item"></div>
+              <button class="edit-item" aria-label="edit card"><span class="edit-item-icon" aria-hidden="true" ,
+                  focusable="false"></span></button>
             </li>
-            <li class="card complete">this is a completed thing</li>
-            <li class="card favorite">this is a favorited thing</li>
-            <li class="card priority">this is priority thing</li>
-            <li class="card edit">
-              <div class="edit"></div>
-              <div class="complete"></div>
-              <div class="favorite"></div>
-              <div class="priority"></div>
-              <div class="trash"></div>
+            <li class="card complete" draggable="true">this is a completed thing</li>
+            <li class="card favorite" draggable="true">this is a favorited thing</li>
+            <li class="card priority" draggable="true">this is priority thing</li>
+            <li class="card edit" draggable="true">
+              <button class="edit-card" aria-label="edit card">
+                <span class="edit-icon invert" aria-hidden="true" focusable="false"></span>
+              </button>
+              <button class="complete-card" aria-label="complete card">
+                <span class="complete-icon" aria-hidden="true" focusable="false"></span>
+              </button>
+              <button class="favorite-card" aria-label="favorite card">
+                <span class="favorite-icon" aria-hidden="true" focusable="false"></span>
+              </button>
+              <button class="prioritize-card" aria-label="prioritize card">
+                <span class="priority-icon" aria-hidden="true" focusable="false"></span>
+              </button>
+              <button class="trash-card" aria-label="delete card">
+                <span class="trash-icon" aria-hidden="true" focusable="false"></span>
+              </button>
             </li>
-            <li class="card">this is 6 thing</li>
+            <li class="card" draggable="true">this is 6 thing</li>
           </ul>
         </li>
       </ul>
@@ -133,9 +151,9 @@
 
   <div id="jq-dropdown-1" class="jq-dropdown jq-dropdown-tip jq-dropdown-anchor-right">
     <div class="jq-dropdown-panel">
-      <form>
+      <form id="add-board-form">
         <label for="boardName">Add board:</label>
-        <input type="text" name="boardName" id="boardName" placeholder="In progress" required>
+        <input type="text" name="boardName" id="boardName" placeholder="In progress">
         <button type="submit">add</button>
       </form>
     </div>
@@ -147,7 +165,21 @@
     </div>
   </div>
 
+  <div id="jq-dropdown-3" class="addCardForm jq-dropdown jq-dropdown-tip jq-dropdown-anchor-right">
+    <div class="jq-dropdown-panel card-panel">
+      <form id="add-card-form">
+        <label for="boardName">Add card:</label>
+        <input type="text" name="cardName" id="cardName" placeholder="Don't forget..." required>
+        <button type="submit">add</button>
+      </form>
+    </div>
+  </div>
+
+
   <script src="./js/app.js"></script>
+  <script src="./js/handle.js"></script>
+  <script src="./js/render.js"></script>
+  <script src="./js/api.js"></script>
   <script type="text/javascript" src="./js/jquery.dropdown.min.js"></script>
 </body>
 
