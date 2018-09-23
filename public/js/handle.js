@@ -23,6 +23,21 @@
 let debug;
 
 const handle = {
+  preAuth: function(token) {
+    api
+      .getAll(token)
+      .then(result => {
+        STORE.list = result.data.todos;
+        STORE.view = 'list';
+        render.list(STORE);
+        render.page(STORE);
+        render.listcount();
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  },
+
   /* HEADER */
   /* Add board form */
   addBoardFormSubmit: function(event) {
