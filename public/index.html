@@ -16,7 +16,6 @@
   <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
   <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
   <link type="text/css" rel="stylesheet" href="./css/jquery.dropdown.min.css" />
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
@@ -29,7 +28,7 @@
 <body>
   <header>
     <h1><img srcset="img/horiz.png 1x, img/horiz@2x.png 2x" alt="Trellish: get sheep done logo"></h1>
-    <div id="nav">
+    <div id="nav" class="view">
       <button class="" data-jq-dropdown="#jq-dropdown-1" aria-label="add board">
         <span class="addBoardButton" aria-hidden="true" focusable="false"></span>
       </button>
@@ -50,23 +49,21 @@
 
 
     <!-- SIGN UP -->
-    <section>
-      <form id="signup" class="view">
-        <fieldset>
+    <form id="signup" class="view">
+      <fieldset>
 
-          <legend>Sign Up:</legend>
+        <legend>Sign Up:</legend>
 
-          <label for="newEmailAddress">Enter your email address:</label>
-          <input type="email" id="newEmailAddress" name="newEmailAddress" autocomplete="username">
+        <label for="newEmailAddress">Enter your email address:</label>
+        <input type="email" id="newEmailAddress" name="newEmailAddress" autocomplete="username">
 
-          <label for="newPassword">Enter your password:</label>
-          <input type="password" id="newPassword" name="newPassword" autocomplete="new-password">
+        <label for="newPassword">Enter your password:</label>
+        <input type="password" id="newPassword" name="newPassword" autocomplete="new-password">
 
-          <button type="submit" class="buttonRight">Sign Up</button>
-          <p>Already have an account? <a href="" class="viewsignin signinlink">Sign In</a></p>
-        </fieldset>
-      </form>
-    </section>
+        <button type="submit" class="buttonRight">Sign Up</button>
+        <p>Already have an account? <a href="" class="viewsignin signinlink">Sign In</a></p>
+      </fieldset>
+    </form>
 
     <!-- SIGN UP CONFIRMATION -->
     <form id="confirmation" class="view">
@@ -79,27 +76,25 @@
 
 
     <!-- SIGN IN FORM -->
-    <section>
-      <form id="signin" class="view">
-        <fieldset>
+    <form id="signin" class="view">
+      <fieldset>
 
-          <legend>Sign In:</legend>
+        <legend>Sign In:</legend>
 
-          <label for="emailAddress">Enter your email address:</label>
-          <input type="email" id="emailAddress" name="emailAddress" autocomplete="username">
+        <label for="emailAddress">Enter your email address:</label>
+        <input type="email" id="emailAddress" name="emailAddress" autocomplete="username">
 
-          <label for="password">Enter your password:</label>
-          <input type="password" id="password" name="password" autocomplete="current-password">
+        <label for="password">Enter your password:</label>
+        <input type="password" id="password" name="password" autocomplete="current-password">
 
-          <button type="submit" class="buttonRight">Sign In </button>
+        <button type="submit" class="buttonRight">Sign In </button>
 
-        </fieldset>
-      </form>
-    </section>
+      </fieldset>
+    </form>
 
 
     <!-- KANBAN BOARD -->
-    <section id="kanba">
+    <section id="kanban" class="view">
       <ul class="board-container">
         <li class="board">
           <div class="board-header">
@@ -176,10 +171,11 @@
   </div>
 
 
-  <script src="./js/app.js"></script>
-  <script src="./js/handle.js"></script>
-  <script src="./js/render.js"></script>
-  <script src="./js/api.js"></script>
+  <script type="text/javascript" src="./js/app.js"></script>
+  <script type="text/javascript" src="./js/handle.js"></script>
+  <script type="text/javascript" src="./js/render.js"></script>
+  <script type="text/javascript" src="./js/api.js"></script>
+  <script type="text/javascript" src="./js/axios.min.js"></script>
   <script type="text/javascript" src="./js/jquery.dropdown.min.js"></script>
 </body>
 
