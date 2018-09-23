@@ -48,39 +48,44 @@ function jinkies() {
     }
   };
 
-  if (localStorage.getItem('token')) {
-    handle.preAuth(localStorage.getItem('token'));
-  } else {
-    render.page(STORE);
-  }
+  // if (localStorage.getItem('token')) {
+  //   handle.preAuth(localStorage.getItem('token'));
+  // } else {
+  //   render.page(STORE);
+  // }
+
+  // WELCOME
+  $('#welcome').on('click', '.js-signup', STORE, handle.newSignup);
+  $('#welcome').on('click', '.js-signin', STORE, handle.presentSignIn);
 
   // SIGNUP, SIGNIN
-  $('#welcome').on('click', '.js-signup', STORE, handle.newSignup);
-  $('#signup').on('submit', STORE, handle.signup);
-  $('#signup').on('click', '.signinlink', STORE, handle.welcomeSignIn);
-
-  $('#welcome').on('click', '.js-signin', STORE, handle.welcomeSignIn);
+  $('#signup').on('submit', STORE, handle.submitSignupForm);
+  $('#signup').on('click', '.signinlink', STORE, handle.presentSignIn);
+  $('#confirmation').on('submit', STORE, handle.presentSignIn);
   $('#signin').on('submit', STORE, handle.signin);
-  $('.signinlink').on('click', STORE, handle.signin);
-  $('#confirmation').on('submit', STORE, handle.welcomeSignIn);
 
-  // LIST
-  $('#viewForm').on('click', handle.viewForm);
-  $('#newItemForm').on('submit', STORE, handle.create);
-  $('ul').on('click', 'li', STORE, handle.complete);
+  // BOARDS
+  $('#add-board-form').on('submit', STORE, handle.addBoardFormSubmit);
+  $('.collapse-board').on('click', STORE, handle.collapseBoard);
+  // $('open-board').on('click', STORE, handle.openBoard);
 
-  // LIST MODIFICATION
+  // CARDS
+  $('#add-card-form').on('submit', STORE, handle.addCardFormSubmit);
+  $('.edit-item').on('click', STORE, handle.cardEditMenu);
+  $('.edit-card').on('click', STORE, handle.editCardItem);
+  $('.complete-card').on('click', STORE, handle.completeCardItem);
+  $('.favorite-card').on('click', STORE, handle.favoriteCardItem);
+  $('.prioritize-card').on('click', STORE, handle.priorityCardItem);
+  $('.trash-card').on('click', STORE, handle.deleteCardItem);
 
   // SIGNOUT
-  $('#signoutButton').on('click', STORE, handle.signout);
+  $('.signout').on('click', STORE, handle.signout);
 
   // REFRESH TOKEN
   // If you're actively clicking on the page, refresh token expiry
   // $("body").on("click", STORE, handle.refresh);
-
   // call checkExpiry on doc ready.
   // handle.checkExpiry(STORE);
-
   // poll to check expiry based on STORE.timer.polling
   // setInterval(() => handle.checkExpiry(STORE), STORE.timer.polling);
 } // END JINKIES
