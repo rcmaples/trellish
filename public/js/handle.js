@@ -23,10 +23,26 @@
 let debug;
 
 const handle = {
+  preAuth: function(token) {
+    // api
+    //   .getAll(token)
+    //   .then(result => {
+    //     STORE.list = result.data.todos;
+    //     STORE.view = 'list';
+    //     render.list(STORE);
+    //     render.page(STORE);
+    //     render.listcount();
+    //   })
+    //   .catch(err => {
+    //     console.error(err);
+    //   });
+  },
+
   /* HEADER */
   /* Add board form */
   addBoardFormSubmit: function(event) {
     event.preventDefault();
+
     alert('handling new board form');
   },
   /* Sign Out */
@@ -39,12 +55,18 @@ const handle = {
   /* welcome sign up button*/
   newSignup: function(event) {
     event.preventDefault();
-    alert('Handling New Signup');
+    const state = event.data;
+    const el = $(event.target);
+    state.view = 'signup';
+    render.page(state);
   },
   /* welcome sign in */
   presentSignIn: function(event) {
     event.preventDefault();
-    alert('Ready to present sign in form');
+    const state = event.data;
+    const el = $(event.target);
+    state.view = 'signin';
+    render.page(state);
   },
   /* sign up form */
   submitSignupForm: function(event) {
@@ -61,7 +83,7 @@ const handle = {
   /* collapse board */
   collapseBoard: function(event) {
     event.preventDefault();
-    alert('handing board collapse');
+    render.collapseBoard(event);
   },
 
   /* open board */
@@ -79,13 +101,13 @@ const handle = {
   /* open edit menu */
   cardEditMenu: function(event) {
     event.preventDefault();
-    alert('presenting edit menu');
+    render.editMenu();
   },
 
   /* edit */
   editCardItem: function(event) {
     event.preventDefault();
-    alert('ready to edit item');
+    render.hideMenu();
   },
   /* mark complete */
   completeCardItem: function(event) {

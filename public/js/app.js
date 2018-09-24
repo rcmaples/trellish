@@ -34,7 +34,7 @@ let STORE = {};
 function jinkies() {
   STORE = {
     dev: true,
-    view: 'welcome',
+    view: 'welcome', // welcome | signup | confirmtion |
     backTo: null,
     list: [],
     item: {},
@@ -51,7 +51,7 @@ function jinkies() {
   // if (localStorage.getItem('token')) {
   //   handle.preAuth(localStorage.getItem('token'));
   // } else {
-  //   render.page(STORE);
+  render.page(STORE);
   // }
 
   // WELCOME
@@ -63,20 +63,21 @@ function jinkies() {
   $('#signup').on('click', '.signinlink', STORE, handle.presentSignIn);
   $('#confirmation').on('submit', STORE, handle.presentSignIn);
   $('#signin').on('submit', STORE, handle.signin);
+  $('#signin').on('click', '.signuplink', STORE, handle.newSignup);
 
   // BOARDS
   $('#add-board-form').on('submit', STORE, handle.addBoardFormSubmit);
   $('.collapse-board').on('click', STORE, handle.collapseBoard);
-  // $('open-board').on('click', STORE, handle.openBoard);
+  $('.open-board').on('click', STORE, handle.openBoard);
 
   // CARDS
   $('#add-card-form').on('submit', STORE, handle.addCardFormSubmit);
-  $('.edit-item').on('click', STORE, handle.cardEditMenu);
-  $('.edit-card').on('click', STORE, handle.editCardItem);
-  $('.complete-card').on('click', STORE, handle.completeCardItem);
-  $('.favorite-card').on('click', STORE, handle.favoriteCardItem);
-  $('.prioritize-card').on('click', STORE, handle.priorityCardItem);
-  $('.trash-card').on('click', STORE, handle.deleteCardItem);
+  // $('.edit-item').on('click', STORE, handle.cardEditMenu);
+  // $('.edit-card').on('click', STORE, handle.editCardItem);
+  // $('.complete-card').on('click', STORE, handle.completeCardItem);
+  // $('.favorite-card').on('click', STORE, handle.favoriteCardItem);
+  // $('.prioritize-card').on('click', STORE, handle.priorityCardItem);
+  // $('.trash-card').on('click', STORE, handle.deleteCardItem);
 
   // SIGNOUT
   $('.signout').on('click', STORE, handle.signout);
