@@ -60,12 +60,25 @@ const render = {
   collapseBoard: function(event) {
     let target = $(event.target);
     target.toggleClass('flip');
-
     target
       .closest('.board')
       .find('ul')
-      // .toggleClass('slide');
       .slideToggle();
-    // target.closest('.slide').slideToggle();
+  },
+
+  createBoard: function(event) {
+    //do stuff
+  },
+
+  displayBoards: function(event) {
+    //do stuff
+  },
+
+  createCards: function(event) {
+    //do stuff
+  },
+
+  displayCards: function(event) {
+    //do stuff
   }
 };
