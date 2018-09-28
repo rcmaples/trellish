@@ -14,6 +14,8 @@ api.js
 
 'use strict';
 
+const URL = './js/db.json';
+
 const api = {
   // Auth Methods
   signup: function(data) {
