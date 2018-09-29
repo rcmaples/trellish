@@ -22,29 +22,29 @@ A User should have
   - a username (lowercase and unique)
   - a password
 */
-const UserSchema = new Schema({
+const userSchema = new Schema({
   name: {
     type: String,
-    required: true,
+    // required: true,
     trim: true
   },
   email: {
     type: String,
-    required: true,
-    unique: true,
+    // required: true,
+    // unique: true,
     lowercase: true,
     trim: true
   },
   username: {
     type: String,
-    required: true,
+    // required: true,
     unique: true,
     lowercase: true,
     trim: true
   },
   password: {
-    type: String,
-    required: true
+    type: String
+    // required: true
   }
 });
 
@@ -54,7 +54,7 @@ A User has the following methods:
   comparePassword - to make sure passwords match
 */
 
-UserSchema.methods.serialize = function() {
+userSchema.methods.serialize = function() {
   return {
     id: this._id,
     name: this.name,
@@ -63,13 +63,12 @@ UserSchema.methods.serialize = function() {
   };
 };
 
-UserSchema.methods.comparePassword = function(candidatePassword, callback) {
+userSchema.methods.comparePassword = function(candidatePassword, callback) {
   bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
     if (err) {
       return callback(err);
-    } else {
-      callback(null, isMatch);
     }
+    callback(null, isMatch);
   });
 };
 
@@ -78,17 +77,21 @@ Mongoose middleware -
 will use .pre to hash the password before storing it in database
 */
 
-UserSchema.pre('save', function(next) {
+userSchema.pre('save', function(next) {
   const user = this;
   bcrypt.genSalt(10, function(err, salt) {
     if (err) {
       return next(err);
-    } else {
+    }
+    bcrypt.hash(user.password, salt, function(err, hash) {
+      if (err) {
+        return next(err);
+      }
       user.password = hash;
       next();
-    }
+    });
   });
 });
 
-const User = mongoose.model('user', UserSchema);
+const User = mongoose.model('user', userSchema);
 module.exports = { User };

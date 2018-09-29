@@ -8,7 +8,7 @@ authentication.js
 'use strict';
 
 const jwt = require('jsonwebtoken');
-const User = require('../models/user');
+const { User } = require('../models/user');
 const config = require('../config/config');
 
 function generateToken(user) {
@@ -54,10 +54,10 @@ exports.signup = function(req, res, next) {
       });
     } else {
       const user = new User({
-        name: name,
-        email: email,
-        username: username,
-        password: password
+        name: req.name,
+        email: req.email,
+        username: req.username,
+        password: req.password
       });
       user.save(err => {
         return next(err);
