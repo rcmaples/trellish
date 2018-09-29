@@ -8,7 +8,7 @@ const jwtAuth = passport.authenticate('jwt', { session: false });
 const localAuth = passport.authenticate('local', { session: false });
 
 module.exports = app => {
-  app.post('/signin', localAuth, Authentication.siginin);
+  app.post('/signin', localAuth, Authentication.signin);
 
   app.post('/signup', Authentication.signup);
 
