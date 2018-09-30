@@ -23,7 +23,7 @@ const localStrategy = new LocalStrategy(localOptions, function(
   password,
   done
 ) {
-  User.findOne({ username: email }, function(err, user) {
+  User.findOne({ email: email }, function(err, user) {
     if (err) {
       return done(err);
     }
