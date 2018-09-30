@@ -13,11 +13,7 @@ const config = require('../config/config');
 
 function generateToken(user) {
   return jwt.sign(
-    {
-      sub: user.id,
-      username: user.username,
-      expiresIn: config.JWT_EXPIRY
-    },
+    { sub: user.id, expiresIn: config.JWT_EXPIRY },
     config.JWT_SECRET
   );
 }
@@ -30,9 +26,9 @@ exports.signin = function(req, res, next) {
 
 // sign up
 exports.signup = function(req, res, next) {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
-  if (!username || !password) {
+  if (!email || !password) {
     return res.status(422).json({
       code: 422,
       reason: 'ValidationError',
@@ -43,23 +39,21 @@ exports.signup = function(req, res, next) {
   // See if user already exists
   // If it doesn't make one.
 
-  User.findOne({ username: username }, function(err, existingUser) {
+  User.findOne({ email: email }, function(err, existingUser) {
     if (err) {
       return next(err);
     } else if (existingUser) {
       return res.status(422).json({
         code: 422,
         reason: 'ValidationError',
-        message: 'Username is already in use.'
+        message: 'Email address is already in use.'
       });
     } else {
       const user = new User({
-        name: req.name,
-        email: req.email,
-        username: req.username,
-        password: req.password
+        email: email,
+        password: password
       });
-      user.save(err => {
+      user.save(function(err) {
         return next(err);
       });
       res.json({ token: generateToken(user) });

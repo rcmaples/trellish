@@ -23,28 +23,14 @@ A User should have
   - a password
 */
 const userSchema = new Schema({
-  name: {
-    type: String,
-    // required: true,
-    trim: true
-  },
   email: {
     type: String,
-    // required: true,
-    // unique: true,
-    lowercase: true,
-    trim: true
-  },
-  username: {
-    type: String,
-    // required: true,
     unique: true,
     lowercase: true,
     trim: true
   },
   password: {
     type: String
-    // required: true
   }
 });
 
@@ -57,9 +43,7 @@ A User has the following methods:
 userSchema.methods.serialize = function() {
   return {
     id: this._id,
-    name: this.name,
-    email: this.email,
-    username: this.username
+    email: this.email || ''
   };
 };
 
@@ -78,20 +62,24 @@ will use .pre to hash the password before storing it in database
 */
 
 userSchema.pre('save', function(next) {
-  const user = this;
+  const user = this; // so we can play with the data being worked with
+
   bcrypt.genSalt(10, function(err, salt) {
     if (err) {
       return next(err);
-    }
+    } // if err pass the error on to the next ftn and exit
+
+    // hash the password
     bcrypt.hash(user.password, salt, function(err, hash) {
       if (err) {
         return next(err);
       }
+      // save the hashed password instead of the plaintext one
       user.password = hash;
-      next();
+      next(); //move along to the next call in the stack
     });
   });
 });
 
-const User = mongoose.model('user', userSchema);
+const User = mongoose.model('User', userSchema);
 module.exports = { User };
