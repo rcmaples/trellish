@@ -60,3 +60,8 @@ exports.signup = function(req, res, next) {
     }
   });
 };
+
+// Refresh
+exports.refresh = function(req, res, next) {
+  res.json({ token: generateToken(req.user) });
+};

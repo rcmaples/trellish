@@ -1,8 +1,13 @@
 'use strict';
-const expect = require('expect');
+
 const mongoose = require('mongoose');
-const request = require('supertest');
+const chai = require('chai');
+const expect = require('chai').expect;
+const chaiHttp = require('chai-http');
+
 const { app } = require('../server');
+
+chai.use(chaiHttp);
 
 function tearDownDB() {
   console.warn('...Deleting Database...');
@@ -12,10 +17,14 @@ function tearDownDB() {
 describe('Root endpoint...', function() {
   describe('GET `/`', () => {
     it('should respond with static html', () => {
-      return request(app)
+      return chai
+        .request(app)
         .get('/')
-        .expect(200)
-        .expect('content-type', 'text/html; charset=UTF-8');
+        .then(res => {
+          // console.log(res);
+          expect(res).to.have.status(200);
+          expect(res).to.be.html;
+        });
     });
   });
 });

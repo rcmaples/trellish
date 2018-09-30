@@ -12,5 +12,5 @@ module.exports = app => {
 
   app.post('/signup', Authentication.signup);
 
-  // app.post('/refresh', jwtAuth, Authentication.refresh );
+  app.post('/refresh', jwtAuth, Authentication.refresh);
 };
