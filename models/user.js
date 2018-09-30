@@ -31,6 +31,9 @@ const userSchema = new Schema({
   },
   password: {
     type: String
+  },
+  name: {
+    type: String
   }
 });
 
@@ -43,7 +46,8 @@ A User has the following methods:
 userSchema.methods.serialize = function() {
   return {
     id: this._id,
-    email: this.email || ''
+    email: this.email || '',
+    name: this.name
   };
 };
 

@@ -20,13 +20,12 @@ function generateToken(user) {
 
 // sign in
 exports.signin = function(req, res, next) {
-  // User should already be authenticated by now
   res.json({ token: generateToken(req.user) });
 };
 
 // sign up
 exports.signup = function(req, res, next) {
-  const { email, password } = req.body;
+  const { email, password, name } = req.body;
 
   if (!email || !password) {
     return res.status(422).json({
@@ -51,7 +50,8 @@ exports.signup = function(req, res, next) {
     } else {
       const user = new User({
         email: email,
-        password: password
+        password: password,
+        name: name
       });
       user.save(function(err) {
         return next(err);
