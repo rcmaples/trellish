@@ -17,6 +17,7 @@ cards will
 
 'use strict';
 const mongoose = require('mongoose');
+const Board = require('./board');
 
 const CardSchema = mongoose.Schema(
   {
