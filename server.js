@@ -20,8 +20,8 @@ app.use(jsonValidator);
 app.use(express.static('public'));
 
 require('./routes/auth.route')(app);
-//require('./routes/board.route')(app);
-//require('./routes/card.route')(app);
+require('./routes/board.route')(app);
+require('./routes/card.route')(app);
 
 function runServer() {
   const port = process.env.PORT || 3000;

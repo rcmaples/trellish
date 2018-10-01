@@ -16,6 +16,7 @@ boards will
 
 'use strict';
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const Card = require('./card');
 
 const BoardSchema = mongoose.Schema(
