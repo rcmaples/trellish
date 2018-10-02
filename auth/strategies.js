@@ -43,12 +43,21 @@ const localStrategy = new LocalStrategy(
 
 const jwtOptions = {
   secretOrKey: JWT_SECRET,
-  jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('Berarer'),
+  jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('Bearer'),
   algorithms: ['HS256']
 };
 
 const jwtStrategy = new JwtStrategy(jwtOptions, (payload, done) => {
-  done(null, payload.user);
+  User.findById(payload.sub, function(err, user) {
+    if (err) {
+      return done(err, false);
+    }
+    if (user) {
+      done(null, user);
+    } else {
+      done(null, false);
+    }
+  });
 });
 
 passport.use(localStrategy);

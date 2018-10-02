@@ -37,7 +37,6 @@ describe('Authentication Endpoints', function() {
   let testUser, jwtToken;
 
   before(function() {
-    testUser = createFakeUser();
     return runServer();
   });
 
@@ -87,7 +86,7 @@ describe('Authentication Endpoints', function() {
             'You must provide a username and password.'
           );
           expect(res.body.reason).to.equal('ValidationError');
-        }); // do test
+        });
     });
 
     it('Should create a user for a proper request', function() {
@@ -168,16 +167,16 @@ describe('Authentication Endpoints', function() {
     });
   });
 
-  // describe('POST /refresh', () => {
-  //   // test refresh route
-  //   it('Should succeed in providing a new token', function() {
-  //     return chai
-  //       .request(app)
-  //       .post('/refresh')
-  //       .set('Authorization', `Bearer ${jwtToken}`)
-  //       .then(res => {
-  //         console.dir(res);
-  //       });
-  //   });
-  // });
+  describe('POST /refresh', () => {
+    // test refresh route
+    it('Should succeed in providing a new token', function() {
+      return chai
+        .request(app)
+        .post('/refresh')
+        .set('Authorization', `Bearer ${jwtToken}`)
+        .then(res => {
+          console.dir(res);
+        });
+    });
+  });
 });
