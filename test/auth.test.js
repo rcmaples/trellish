@@ -175,7 +175,9 @@ describe('Authentication Endpoints', function() {
         .post('/refresh')
         .set('Authorization', `Bearer ${jwtToken}`)
         .then(res => {
-          console.dir(res);
+          expect(res).to.have.status(200);
+          expect(res.body).to.be.an('Object');
+          expect(res.body).to.have.key('token');
         });
     });
   });
