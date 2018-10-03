@@ -29,7 +29,7 @@ const { Board } = require('../models/board');
 module.exports = app => {
   //C
   // POST a new board
-  app.post('/boards/create', jwtAuth, (req, res) => {
+  app.post('/boards', jwtAuth, (req, res) => {
     Board.create({
       name: req.body.name,
       owner: req.user.id,
@@ -83,7 +83,7 @@ module.exports = app => {
 
   //U
   //PATCH one board
-  app.patch('/boards/update/:id', jwtAuth, (req, res) => {
+  app.patch('/boards/:id', jwtAuth, (req, res) => {
     const boardID = req.params.id;
     const userID = req.user.id;
     const name = _.pick(req.body, ['name']);
@@ -120,7 +120,7 @@ module.exports = app => {
 
   //D
   //DELETE a board
-  app.delete('/boards/delete/:id', jwtAuth, (req, res) => {
+  app.delete('/boards/:id', jwtAuth, (req, res) => {
     const boardID = req.params.id;
     const userID = req.user.id;
     const name = _.pick(req.body, ['name']);

@@ -38,18 +38,18 @@ module.exports = app => {
       board: req.body.board
     })
       .then(card => {
-        if (card) {
-          Board.updateOne(
-            { _id: req.body.board },
-            { $push: { cards: card._id } },
-            done
-          )
-            .then(board => console.log(board))
-            .catch(err => res.status(400).send('Whoops'));
-        }
-        // res.status(201).send({ card });
+        // if (card) {
+        //   Board.updateOne(
+        //     { _id: req.body.board },
+        //     { $push: { cards: card._id } },
+        //     done
+        //   )
+        //     .then(board => console.log(board))
+        //     .catch(err => res.status(400).send('Whoops'));
+        // }
+        res.status(201).send({ card });
       })
-      .catch(err => res.status(400).send('Uh oh'));
+      .catch(err => res.status(400).send(err));
   });
 
   //R
@@ -86,7 +86,7 @@ module.exports = app => {
   });
 
   // GET one Card
-  app.get('/card/:id', jwtAuth, (req, res) => {
+  app.get('/cards/:id', jwtAuth, (req, res) => {
     const id = req.params.id;
 
     // Is the ID valid?
@@ -115,7 +115,7 @@ module.exports = app => {
 
   //U
   // PATCH one card
-  app.patch('/card/update/:id', jwtAuth, (req, res) => {
+  app.patch('/cards/:id', jwtAuth, (req, res) => {
     const cardID = req.params.id;
     const userID = req.user.id;
     const text = _.pick(req.body, ['text']);
@@ -151,7 +151,7 @@ module.exports = app => {
 
   //D
   // Delete One Card
-  app.delete('/card/delete/:id', jwtAuth, (req, res) => {
+  app.delete('/cards/:id', jwtAuth, (req, res) => {
     const cardID = req.params.id;
     const userID = req.user.id;
     const name = _.pick(req.body, ['text']);
