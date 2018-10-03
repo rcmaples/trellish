@@ -31,7 +31,7 @@ const { Board } = require('../models/board');
 module.exports = app => {
   //C
   // POST a new card
-  app.post('/card/create', jwtAuth, (req, res) => {
+  app.post('/cards', jwtAuth, (req, res) => {
     Card.create({
       text: req.body.text,
       owner: req.user.id,
@@ -41,13 +41,15 @@ module.exports = app => {
         if (card) {
           Board.updateOne(
             { _id: req.body.board },
-            { $push: { cards: card } },
+            { $push: { cards: card._id } },
             done
-          ).then(board => console.log(board));
+          )
+            .then(board => console.log(board))
+            .catch(err => res.status(400).send('Whoops'));
         }
         // res.status(201).send({ card });
       })
-      .catch(err => res.status(400).send(err));
+      .catch(err => res.status(400).send('Uh oh'));
   });
 
   //R
