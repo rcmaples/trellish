@@ -70,3 +70,7 @@ function tearDownDB() {
       });
   });
 }
+
+function seedData() {
+  User.create()
+}
