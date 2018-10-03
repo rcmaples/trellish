@@ -72,6 +72,7 @@ module.exports = app => {
   // GET all boards
   app.get('/boards', jwtAuth, (req, res) => {
     Board.find({ owner: req.user.id })
+      .populate('card')
       .then(boards => {
         res.status(200).send({ boards });
       })
@@ -137,7 +138,7 @@ module.exports = app => {
           return res.status(401).send('Unauthorized.');
         }
 
-        // Actually patch the board name
+        // Actually delete the board
         Board.findByIdAndRemove(boardID)
           .then(board => {
             if (!board) {
