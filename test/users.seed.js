@@ -2,6 +2,7 @@ const { ObjectID } = require('mongodb');
 const jwt = require('jsonwebtoken');
 const { User } = require('../models/user');
 const faker = require('faker');
+const config = require('../config/config');
 
 function createFakeUser() {
   return {
@@ -31,15 +32,14 @@ function seedUsers() {
         message: 'Email address is already in use.'
       });
     } else {
-      const user = new User({
-        email: email,
-        password: password,
-        name: name
-      });
+      const user = new User(newUser);
+      console.log(user);
       user.save(function(err) {
         return next(err);
       });
-      res.json({ token: generateToken(user) });
+      console.log(user);
+      // res.json({ token: generateToken(user) });
+      return user;
     }
   });
 }
