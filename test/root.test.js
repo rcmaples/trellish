@@ -14,8 +14,8 @@ function tearDownDB() {
   return mongoose.connection.dropDatabase();
 }
 
-describe('Root endpoint...', function() {
-  describe('GET `/`', () => {
+describe('\n========================\nRoot Endpoint\n========================\n', function() {
+  describe('\n----------\nGET /\n----------\n', () => {
     it('should respond with static html', () => {
       return chai
         .request(app)
