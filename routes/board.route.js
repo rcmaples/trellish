@@ -115,11 +115,11 @@ module.exports = app => {
             return res.status(200).send({ board });
           })
           .catch(err => {
-            res.status(400).send('This is bad.');
+            res.status(400).send(err);
           });
       })
       .catch(err => {
-        res.status(400).send('this is really bad');
+        res.status(400).send(err);
       });
   });
 

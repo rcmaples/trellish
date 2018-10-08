@@ -44,6 +44,7 @@ SEED DATA
 
 'use strict';
 const mongoose = require('mongoose');
+const { ObjectID } = require('mongodb');
 const chai = require('chai');
 const expect = require('chai').expect;
 const chaiHttp = require('chai-http');
@@ -55,9 +56,11 @@ const { Board } = require('../models/board');
 const { Card } = require('../models/card');
 const {
   populateUser,
+  boardId,
   seedUserToken,
   populateBoard,
-  populateCards
+  populateCards,
+  seedCards
 } = require('./seed');
 
 chai.use(chaiHttp);
@@ -78,22 +81,26 @@ function tearDownDB() {
 }
 
 describe('\n========================\nCard Endpoints\n========================\n', function() {
-  before(() => {
-    return runServer();
+  let fakeID = new ObjectID();
+  let token = seedUserToken;
+  let card = seedCards[0]._id;
+
+  before(async () => {
+    await runServer();
   });
 
-  before(() => {
-    populateUser();
-    populateBoard();
-    populateCards();
+  beforeEach(async () => {
+    await populateUser();
+    await populateBoard();
+    await populateCards();
   });
 
-  afterEach(() => {
-    return tearDownDB();
+  afterEach(async () => {
+    await tearDownDB();
   });
 
-  after(() => {
-    return closeServer();
+  after(async () => {
+    await closeServer();
   });
 
   describe('\n----------\nPOST /cards\n----------\n', () => {
@@ -101,27 +108,29 @@ describe('\n========================\nCard Endpoints\n========================\n
       return chai
         .request(app)
         .post('/cards')
-        .send()
+        .send({ text: 'fail card', board: boardId })
         .then(res => {
-          expect(res).to.have.status(422);
+          expect(res).to.have.status(401);
         });
     });
     it('Should fail if text is empty/null', () => {
       return chai
         .request(app)
         .post('/cards')
-        .send()
+        .set('Authorization', `Bearer ${token}`)
+        .send({ text: '', board: boardId })
         .then(res => {
-          expect(res).to.have.status(422);
+          expect(res).to.have.status(400);
         });
     });
     it('Should succeed if request is correct', () => {
       return chai
         .request(app)
         .post('/cards')
-        .send()
+        .set('Authorization', `Bearer ${token}`)
+        .send({ text: 'Success Card', board: boardId })
         .then(res => {
-          expect(res).to.have.status(422);
+          expect(res).to.have.status(201);
         });
     });
   });
@@ -130,19 +139,19 @@ describe('\n========================\nCard Endpoints\n========================\n
     it('Should fail if not authenticated', () => {
       return chai
         .request(app)
-        .post('/cards')
-        .send()
+        .get('/cards')
         .then(res => {
-          expect(res).to.have.status(422);
+          expect(res).to.have.status(401);
         });
     });
     it('Should return an array of objects', () => {
       return chai
         .request(app)
-        .post('/cards')
-        .send()
+        .get('/cards')
+        .set('Authorization', `Bearer ${token}`)
         .then(res => {
-          expect(res).to.have.status(422);
+          expect(res).to.have.status(200);
+          expect(res.body).to.be.an('Object');
         });
     });
   });
@@ -151,37 +160,38 @@ describe('\n========================\nCard Endpoints\n========================\n
     it('Should fail if not authenticated', () => {
       return chai
         .request(app)
-        .get('/cards')
-        .send()
+        .get(`/cards/${card}`)
         .then(res => {
-          expect(res).to.have.status(422);
+          expect(res).to.have.status(401);
         });
     });
-    it('Should fail if ID is not valid', () => {
+    it("Should fail if ID is not valid / doesn't exist", () => {
       return chai
         .request(app)
-        .get('/cards')
-        .send()
+        .get(`/cards/${fakeID}`)
+        .set('Authorization', `Bearer ${token}`)
         .then(res => {
-          expect(res).to.have.status(422);
+          expect(res).to.have.status(404);
         });
     });
     it("Should fail if User isn't authorized for ID", () => {
       return chai
         .request(app)
-        .get('/cards')
+        .get(`/cards/${card}`)
         .send()
         .then(res => {
-          expect(res).to.have.status(422);
+          expect(res).to.have.status(401);
         });
     });
     it('Should return an object', () => {
       return chai
         .request(app)
-        .get('/cards')
+        .get(`/cards/${card}`)
+        .set('Authorization', `Bearer ${token}`)
         .send()
         .then(res => {
-          expect(res).to.have.status(422);
+          expect(res).to.have.status(200);
+          expect(res.body).to.be.an('Object');
         });
     });
   });
@@ -190,37 +200,29 @@ describe('\n========================\nCard Endpoints\n========================\n
     it('Should fail if not authenticated', () => {
       return chai
         .request(app)
-        .patch('/cards')
-        .send()
+        .patch(`/cards/${card}`)
         .then(res => {
-          expect(res).to.have.status(422);
+          expect(res).to.have.status(401);
         });
     });
-    it("Should fail if the card ID doesn't exist", () => {
+    it("Should fail if the card ID doesn't exist / is invalid", () => {
       return chai
         .request(app)
-        .patch('/cards')
-        .send()
+        .patch(`/cards/${fakeID}`)
+        .set('Authorization', `Bearer ${token}`)
+        .send({ text: 'patch fail' })
         .then(res => {
-          expect(res).to.have.status(422);
-        });
-    });
-    it('Should fail if the card ID is invalid', () => {
-      return chai
-        .request(app)
-        .patch('/cards')
-        .send()
-        .then(res => {
-          expect(res).to.have.status(422);
+          expect(res).to.have.status(400);
         });
     });
     it('Should return an object', () => {
       return chai
         .request(app)
-        .patch('/cards')
-        .send()
+        .patch(`/cards/${card}`)
+        .set('Authorization', `Bearer ${token}`)
+        .send({ text: 'patch win' })
         .then(res => {
-          expect(res).to.have.status(422);
+          expect(res).to.have.status(200);
         });
     });
   });
@@ -229,37 +231,29 @@ describe('\n========================\nCard Endpoints\n========================\n
     it('Should fail if not authenticated', () => {
       return chai
         .request(app)
-        .delete('/cards')
-        .send()
+        .delete(`/cards/${card}`)
         .then(res => {
-          expect(res).to.have.status(422);
+          expect(res).to.have.status(401);
         });
     });
     it("Should fail if the card ID doesn't exist", () => {
       return chai
         .request(app)
-        .delete('/cards')
+        .delete(`/cards/${fakeID}`)
+        .set('Authorization', `Bearer ${token}`)
         .send()
         .then(res => {
-          expect(res).to.have.status(422);
-        });
-    });
-    it('Should fail if the card ID is invalid', () => {
-      return chai
-        .request(app)
-        .delete('/cards')
-        .send()
-        .then(res => {
-          expect(res).to.have.status(422);
+          expect(res).to.have.status(400);
         });
     });
     it('Should delete the card', () => {
       return chai
         .request(app)
-        .delete('/cards')
+        .delete(`/cards/${card}`)
+        .set('Authorization', `Bearer ${token}`)
         .send()
         .then(res => {
-          expect(res).to.have.status(422);
+          expect(res).to.have.status(202);
         });
     });
   });
