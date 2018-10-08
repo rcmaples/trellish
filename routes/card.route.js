@@ -19,7 +19,8 @@ Card routes
 
 const _ = {
   pick: require('lodash.pick'),
-  isboolean: require('lodash.isboolean')
+  isboolean: require('lodash.isboolean'),
+  get: require('lodash.get')
 };
 
 const passport = require('passport');
@@ -37,18 +38,7 @@ module.exports = app => {
       owner: req.user.id,
       board: req.body.board
     })
-      .then(card => {
-        // if (card) {
-        //   Board.updateOne(
-        //     { _id: req.body.board },
-        //     { $push: { cards: card._id } },
-        //     done
-        //   )
-        //     .then(board => console.log(board))
-        //     .catch(err => res.status(400).send('Whoops'));
-        // }
-        res.status(201).send({ card });
-      })
+      .then(card => res.status(201).send({ card }))
       .catch(err => res.status(400).send(err));
   });
 
@@ -120,7 +110,7 @@ module.exports = app => {
   app.patch('/cards/:id', jwtAuth, (req, res) => {
     const cardID = req.params.id;
     const userID = req.user.id;
-    const text = _.pick(req.body, ['text']);
+    const text = _.get(req.body, ['text']);
 
     if (!ObjectID.isValid(cardID)) {
       return res.status(400).send('Invalid Card ID');
@@ -135,7 +125,7 @@ module.exports = app => {
         }
 
         // Actually patch the card text
-        Card.findByIdAndUpdate(CardID, { $set: text }, { new: true })
+        Card.findByIdAndUpdate(card._id, { $set: { text: text } })
           .then(card => {
             if (!card) {
               return res.status(404).send('Card ID Not Found');
@@ -156,7 +146,6 @@ module.exports = app => {
   app.delete('/cards/:id', jwtAuth, (req, res) => {
     const cardID = req.params.id;
     const userID = req.user.id;
-    const name = _.pick(req.body, ['text']);
 
     if (!ObjectID.isValid(cardID)) {
       return res.status(400).send('Invalid Card ID');
@@ -171,12 +160,12 @@ module.exports = app => {
         }
 
         // Actually patch the card
-        Card.findByIdAndRemove(CardID)
+        Card.findByIdAndRemove(card._id)
           .then(card => {
             if (!card) {
               return res.status(404).send('Card ID Not Found');
             }
-            return res.status(200).send({ card });
+            return res.status(202).send({ card });
           })
           .catch(err => {
             res.status(400).send(err);

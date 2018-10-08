@@ -36,13 +36,13 @@ function createFakeUser() {
 describe('\n========================\nAuthentication Endpoints\n========================\n', function() {
   let testUser, jwtToken;
 
-  before(function() {
-    runServer();
+  before(async () => {
+    await runServer();
   });
 
-  after(function() {
-    tearDownDB();
-    closeServer();
+  after(async () => {
+    await tearDownDB();
+    await closeServer();
   });
 
   describe('\n----------\nPOST /signup\n----------\n', () => {

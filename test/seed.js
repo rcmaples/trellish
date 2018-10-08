@@ -86,5 +86,6 @@ module.exports = {
   seedUserToken,
   boardId,
   populateBoard,
-  populateCards
+  populateCards,
+  seedCards
 };
