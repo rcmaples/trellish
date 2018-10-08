@@ -33,11 +33,11 @@ function createFakeUser() {
   };
 }
 
-describe('Authentication Endpoints', function() {
+describe('\n========================\nAuthentication Endpoints\n========================\n', function() {
   let testUser, jwtToken;
 
   before(function() {
-    return runServer();
+    runServer();
   });
 
   after(function() {
@@ -45,7 +45,7 @@ describe('Authentication Endpoints', function() {
     closeServer();
   });
 
-  describe('POST /signup', () => {
+  describe('\n----------\nPOST /signup\n----------\n', () => {
     // Create a user for our tests
 
     testUser = createFakeUser();
@@ -117,7 +117,7 @@ describe('Authentication Endpoints', function() {
     });
   });
 
-  describe('POST /signin', () => {
+  describe('\n----------\nPOST /signin\n----------\n', () => {
     //test signin route
     const signInBadEmail = {
       email: 'not@good.com',
@@ -167,7 +167,7 @@ describe('Authentication Endpoints', function() {
     });
   });
 
-  describe('POST /refresh', () => {
+  describe('\n----------\nPOST /refresh\n----------\n', () => {
     // test refresh route
     it('Should succeed in providing a new token', function() {
       return chai

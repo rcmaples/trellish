@@ -25,7 +25,8 @@ const BoardSchema = mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      minlength: 1
+      minlength: 1,
+      unique: true
     },
     owner: { type: String },
     cards: [{ type: Schema.Types.ObjectId, ref: 'Card' }]

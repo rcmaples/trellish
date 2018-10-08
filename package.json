@@ -41,6 +41,7 @@
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
+    "lodash.get": "^4.4.2",
     "lodash.isboolean": "^3.0.3",
     "lodash.pick": "^4.4.0",
     "mongodb": "^3.1.4",

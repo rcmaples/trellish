@@ -13,6 +13,7 @@ const port = process.env.PORT || 3000;
 
 mongoose.Promise = global.Promise;
 mongoose.set('useCreateIndex', true);
+mongoose.set('useFindAndModify', false);
 
 app.use(morgan('dev'));
 app.use(express.json());
