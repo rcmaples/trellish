@@ -17,7 +17,7 @@ Boar routes
 'use strict';
 
 const _ = {
-  pick: require('lodash.pick'),
+  get: require('lodash.get'),
   isboolean: require('lodash.isboolean')
 };
 
@@ -82,15 +82,20 @@ module.exports = app => {
   });
 
   //U
-  //PATCH one board
+  //patch one board
   app.patch('/boards/:id', jwtAuth, (req, res) => {
     const boardID = req.params.id;
     const userID = req.user.id;
-    const name = _.pick(req.body, ['name']);
+    const name = _.get(req.body, ['name']);
 
     // Is the board ID Valid?
     if (!ObjectID.isValid(boardID)) {
       return res.status(400).send('Invalid Board ID');
+    }
+
+    // Does the request have data?
+    if (name == '') {
+      return res.status(400).send('Invalid Request: Name cannot be empty.');
     }
 
     // Find the board
@@ -102,7 +107,7 @@ module.exports = app => {
         }
 
         // Actually patch the board name
-        Board.findByIdAndUpdate(boardID, { $set: name }, { new: true })
+        Board.findByIdAndUpdate(board._id, { $set: { name: name } })
           .then(board => {
             if (!board) {
               return res.status(404).send('Board ID Not Found');
@@ -110,11 +115,11 @@ module.exports = app => {
             return res.status(200).send({ board });
           })
           .catch(err => {
-            res.status(400).send(err);
+            res.status(400).send('This is bad.');
           });
       })
       .catch(err => {
-        res.status(400).send(err);
+        res.status(400).send('this is really bad');
       });
   });
 
@@ -122,8 +127,7 @@ module.exports = app => {
   //DELETE a board
   app.delete('/boards/:id', jwtAuth, (req, res) => {
     const boardID = req.params.id;
-    const userID = req.user.id;
-    const name = _.pick(req.body, ['name']);
+    const userID = req.user._id;
 
     // Is the board ID Valid?
     if (!ObjectID.isValid(boardID)) {
@@ -134,24 +138,21 @@ module.exports = app => {
     Board.findById(boardID)
       .then(board => {
         // Is the requester the board owner?
-        if (board.owner !== userID) {
+        if (board.owner != userID) {
           return res.status(401).send('Unauthorized.');
         }
 
         // Actually delete the board
         Board.findByIdAndRemove(boardID)
           .then(board => {
-            if (!board) {
-              return res.status(404).send('Board ID Not Found');
-            }
-            return res.status(202).send({ board });
+            res.status(202).send({ board });
           })
           .catch(err => {
-            res.status(400).send(err);
+            res.status(400).send(`${err}`);
           });
       })
       .catch(err => {
-        res.status(400).send(err);
+        res.status(400).send(`${err}`);
       });
   });
 };

@@ -65,25 +65,27 @@ module.exports = app => {
   });
 
   // GET all cards by boardID
-  app.get('/cards/:boardid', jwtAuth, (req, res) => {
-    const boardID = req.params.boardid;
+  // TODO: This needs to be refactored as a subresource of /boards
+  // maybe something like GET /boards/:boardID/cards
+  // app.get('/cards/:boardid', jwtAuth, (req, res) => {
+  //   const boardID = req.params.boardid;
 
-    // Is the ID valid?
-    if (!ObjectID.isValid(boardID)) {
-      return res.status(400).send('Invalid ID');
-    }
+  //   // Is the ID valid?
+  //   if (!ObjectID.isValid(boardID)) {
+  //     return res.status(400).send('Invalid ID');
+  //   }
 
-    Card.find({ board: boardID })
-      .then(cards => {
-        if (!cards) {
-          return res.status(404).send('Board ID Not Found');
-        }
-        res.status(200).send({ cards });
-      })
-      .catch(err => {
-        res.status(500).send(err);
-      });
-  });
+  //   Card.find({ board: boardID })
+  //     .then(cards => {
+  //       if (!cards) {
+  //         return res.status(404).send('Board ID Not Found');
+  //       }
+  //       res.status(200).send({ cards });
+  //     })
+  //     .catch(err => {
+  //       res.status(500).send(err);
+  //     });
+  // });
 
   // GET one Card
   app.get('/cards/:id', jwtAuth, (req, res) => {
@@ -184,9 +186,4 @@ module.exports = app => {
         res.status(400).send(err);
       });
   });
-  /*
-  For deleting all cards,
-  may be best to run each card in a board
-  through the singlur delete route.
-  */
 };
