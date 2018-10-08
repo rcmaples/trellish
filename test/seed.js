@@ -55,65 +55,36 @@ const seedCards = [
     owner: seedUser._id,
     board: seedBoard._id,
     text: faker.random.words(),
-    completed: false
-  },
-  {
-    _id: new ObjectID(),
-    owner: seedUser._id,
-    board: seedBoard._id,
-    text: faker.random.words(),
-    completed: true
-  },
-  {
-    _id: new ObjectID(),
-    owner: seedUser._id,
-    board: seedBoard._id,
-    text: faker.random.words(),
-    completed: false
-  },
-  {
-    _id: new ObjectID(),
-    owner: seedUser._id,
-    board: seedBoard._id,
-    text: faker.random.words(),
     completed: true
   }
 ];
 
-function generateToken(user) {
-  return jwt.sign(
-    { sub: user.id, expiresIn: config.JWT_EXPIRY },
-    config.JWT_SECRET
-  );
+function makeToken(user) {
+  return jwt.sign({ sub: user._id, expiresIn: JWT_EXPIRY }, JWT_SECRET);
 }
 
-const seedUserToken = generateToken(seedUser);
+const seedUserToken = makeToken(seedUser);
 
-const populateUser = done => {
-  console.info('Generating and seeding User data...');
-  User.remove({})
-    .then(() => {
-      return User.insertOne(seedUser);
-    })
-    .then(() => done());
+const populateUser = () => {
+  const newUser = new User(seedUser).save();
+  return Promise.resolve(newUser);
 };
 
-const populateBoard = done => {
-  console.info('Generating and seeding Board data...');
-  Board.remove({})
-    .then(() => {
-      return Board.insertOne(seedBoard);
-    })
-    .then(() => done());
+const populateBoard = () => {
+  const newBoard = new Board(seedBoard).save();
+  return Promise.resolve(newBoard);
 };
 
-const populateCards = done => {
-  console.info('Generating and seeding Card data...');
-  Card.remove({})
-    .then(() => {
-      return Card.insertMany(seedCards);
-    })
-    .then(() => done());
+const populateCards = () => {
+  const cardOne = new Card(seedCards[0]).save();
+  const cardTwo = new Card(seedCards[1]).save();
+  return Promise.all([cardOne, cardTwo]);
 };
 
-module.exports = { populateUser, seedUserToken, populateBoard, populateCards };
+module.exports = {
+  populateUser,
+  seedUserToken,
+  boardId,
+  populateBoard,
+  populateCards
+};
