@@ -14,39 +14,178 @@ api.js
 
 'use strict';
 
-const URL = './js/db.json';
-
 const api = {
   // Auth Methods
   signup: function(data) {
-    // do stuff
+    /*  data here should be a json object -
+        { "email": "email@address.com",
+          "password": "password" }
+    */
+    return axios
+      .post('/signup', data)
+      .then(response => {
+        return response;
+      })
+      .catch(err => {
+        return Promise.reject(err);
+      });
   },
 
   signin: function(data) {
-    // do stuff
+    /*  data here should be a json object -
+        { "email": "email@address.com",
+          "password": "password" }
+    */
+    return axios
+      .post('/signin', data)
+      .then(response => {
+        return response;
+      })
+      .catch(err => {
+        console.error(err);
+      });
   },
 
-  getAllBoards: function(data) {
-    // do stuff
+  refresh: function(token) {
+    const axiosConfig = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    };
+    return axios
+      .post('/refresh', axiosConfig)
+      .then(response => {
+        return response;
+      })
+      .catch(err => {
+        console.error(err);
+      });
   },
 
-  getAllCards: function(data) {
-    // do stuff
+  getAllBoards: function(token) {
+    const axiosConfig = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    };
+
+    return axios
+      .get('/boards', axiosConfig)
+      .then(response => {
+        return response;
+      })
+      .catch(err => {
+        console.error(err);
+      });
   },
 
-  modifyCard: function(data) {
-    // do stuff
+  getOneBoard: function(id, token) {
+    const axiosConfig = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    };
+
+    return axios
+      .get(`/boards/${id}`, axiosConfig)
+      .then(response => {
+        return response;
+      })
+      .catch(err => {
+        console.error(err);
+      });
   },
 
-  createABoard: function(data) {
-    // do stuff
+  getAllCards: function(token) {
+    const axiosConfig = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    };
+
+    return axios
+      .get('/cards', axiosConfig)
+      .then(response => {
+        return response;
+      })
+      .catch(err => {
+        console.error(err);
+      });
   },
 
-  createACard: function(data) {
-    // do stuff
+  modifyCard: function(data, id, token) {
+    const axiosConfig = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    };
+
+    return axios
+      .patch(`/cards/${id}`, data, axiosConfig)
+      .then(response => {
+        return response;
+      })
+      .catch(err => {
+        console.error(err);
+      });
   },
 
-  removeACard: function(data) {
-    //do suff
+  createABoard: function(data, token) {
+    const axiosConfig = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    };
+
+    return axios
+      .post('/boards', data, axiosConfig)
+      .then(response => {
+        return response;
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  },
+
+  createACard: function(data, token) {
+    const axiosConfig = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    };
+
+    return axios
+      .post('/cards', data, axiosConfig)
+      .then(response => {
+        return response;
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  },
+
+  removeACard: function(id, token) {
+    const axiosConfig = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    };
+
+    return axios
+      .delete(`/cards/${id}`, axiosConfig)
+      .then(response => {
+        return response;
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 };
