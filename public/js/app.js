@@ -32,8 +32,9 @@ jQuery concepts:
 let STORE = {};
 
 function jinkies() {
+  console.log('Jinkies');
   STORE = {
-    dev: true,
+    dev: false,
     view: 'welcome', // welcome | signup | confirmtion |
     backTo: null,
     list: [],
@@ -48,11 +49,11 @@ function jinkies() {
     }
   };
 
-  // if (localStorage.getItem('token')) {
-  //   handle.preAuth(localStorage.getItem('token'));
-  // } else {
-  render.page(STORE);
-  // }
+  if (localStorage.getItem('token')) {
+    handle.preAuth(localStorage.getItem('token'));
+  } else {
+    render.page(STORE);
+  }
 
   // WELCOME
   $('#welcome').on('click', '.js-signup', STORE, handle.newSignup);
