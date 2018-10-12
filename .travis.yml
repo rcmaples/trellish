@@ -4,8 +4,7 @@ services: mongodb
 install:
   - npm install -g codecov istanbul
 script:
-  istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && codecov
-  - codecov
+  - istanbul cover ./node_modules/mocha/bin/_mocha
 deploy:
   provider: heroku
   api_key:
