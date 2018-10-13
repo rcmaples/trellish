@@ -44,7 +44,7 @@ const handle = {
         for (let card of res.data.cards) {
           STORE.cards.push(card);
         }
-        console.dir(STORE);
+        render.displayCards(STORE);
       })
       .catch(err => {
         console.dir(err);
@@ -55,7 +55,6 @@ const handle = {
         }
         console.error(err);
       });
-    // TODO: Add get all cards
   },
 
   /* HEADER */
@@ -96,7 +95,7 @@ const handle = {
     state.cards = [];
     state.token = null;
     state.emailAddress = null;
-    // render.emptylist();
+    render.emptyBoards();
     render.page(state);
   },
 
@@ -162,7 +161,6 @@ const handle = {
   /* sign in form */
   signin: function(event) {
     event.preventDefault();
-
     const state = event.data;
     const el = $(event.target);
     const emailAddress = el
@@ -195,7 +193,6 @@ const handle = {
         for (let board of result.data.boards) {
           state.boards.push(board);
         }
-        console.dir(state);
         render.page(state);
         render.displayBoards(state);
       })
@@ -207,6 +204,7 @@ const handle = {
         for (let card of res.data.cards) {
           state.cards.push(card);
         }
+        render.displayCards(state);
       })
       .catch(err => {
         console.dir(err);
@@ -226,12 +224,6 @@ const handle = {
     render.collapseBoard(event);
   },
 
-  /* open board */
-  // openBoard: function(event) {
-  //   event.preventDefault();
-  //   alert('handling board open');
-  // },
-
   /* add card form */
   addCardFormSubmit: function(event) {
     event.preventDefault();
@@ -249,12 +241,12 @@ const handle = {
     } else {
       itemObj.text = sanitized;
     }
-    console.dir(itemObj);
+    // console.dir(itemObj);
     api
       .createACard(itemObj, token)
       .then(res => {
         state.view = 'kanban';
-        // render.createACard(res);
+        render.createACard(res);
       })
       .catch(err => {
         console.error(err);

@@ -233,7 +233,7 @@ li {
   flex: 0 0 auto;
   margin: 5px;
   /* min-height: min-content; */
-  height: auto;
+  height: fit-content;
   max-height: 725px;
   min-width: 296px;
   max-width: 360px;
@@ -550,7 +550,7 @@ legend {
 
 .jq-dropdown .jq-dropdown-menu,
 .jq-dropdown .jq-dropdown-panel:not(.card-panel) {
-  background: rgba(100, 100, 100, 0.5) !important;
+  background: rgba(100, 100, 100) !important;
   padding: 10px;
 }
 
