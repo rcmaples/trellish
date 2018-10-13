@@ -71,9 +71,11 @@ module.exports = app => {
   });
   // GET all boards
   app.get('/boards', jwtAuth, (req, res) => {
+    let email = req.user.email;
+    let userID = req.user._id;
     Board.find({ owner: req.user.id })
       .then(boards => {
-        res.status(200).send({ boards });
+        res.status(200).send({ boards, email, userID });
       })
       .catch(err => {
         res.status(400).send(err);

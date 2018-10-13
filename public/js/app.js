@@ -38,7 +38,7 @@ function jinkies() {
     view: 'welcome', // welcome | signup | confirmtion |
     backTo: null,
     boards: [],
-    item: {},
+    cards: [],
     token: localStorage.getItem('token'),
     emailAddress: null,
     timer: {

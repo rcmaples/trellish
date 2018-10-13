@@ -28,11 +28,23 @@ const handle = {
     api
       .getAllBoards(token)
       .then(result => {
+        STORE.emailAddress = result.data.email;
         for (let board of result.data.boards) {
           STORE.boards.push(board);
         }
         render.page(STORE);
         render.displayBoards(STORE);
+      })
+      .then(() => {
+        return api.getAllCards(token);
+      })
+      .then(res => {
+        // array of card objects: res.data.cards
+        // console.log(res.data.cards);
+        for (let card of res.data.cards) {
+          STORE.cards.push(card);
+        }
+        console.dir(STORE);
       })
       .catch(err => {
         console.dir(err);
@@ -81,6 +93,7 @@ const handle = {
     const state = event.data;
     state.view = 'welcome';
     state.boards = [];
+    state.cards = [];
     state.token = null;
     state.emailAddress = null;
     // render.emptylist();
@@ -186,6 +199,15 @@ const handle = {
         render.page(state);
         render.displayBoards(state);
       })
+      .then(() => {
+        return api.getAllCards(state.token);
+      })
+      .then(res => {
+        // array of card objects: res.data.cards
+        for (let card of res.data.cards) {
+          state.cards.push(card);
+        }
+      })
       .catch(err => {
         console.dir(err);
         let errCode = err.response.status;
@@ -213,18 +235,15 @@ const handle = {
   /* add card form */
   addCardFormSubmit: function(event) {
     event.preventDefault();
-    console.dir(event);
     const itemObj = {};
     const state = event.data;
     const token = state.token;
     const itemDescription = $('#cardName')
       .val()
       .trim();
-    console.log($('#parentBoard'));
     const parentBoard = $('#parentBoard').val();
     itemObj.board = parentBoard;
     const sanitized = $(itemDescription).text();
-    console.log('sanitized: ', sanitized);
     if (!sanitized) {
       itemObj.text = itemDescription;
     } else {
@@ -259,14 +278,14 @@ const handle = {
     let board_id = $(this).attr('data-board-id');
     let boardString = `<input type="hidden" name="parentBoard" id="parentBoard" value="${board_id}">`;
 
-    console.log('This board ID: ', board_id);
+    // console.log('This board ID: ', board_id);
 
     if ($('#parentBoard').length > 0) {
       $('#parentBoard').remove();
     }
-      $('#add-card-form')
-        .find('button')
-        .before(boardString);
+    $('#add-card-form')
+      .find('button')
+      .before(boardString);
   },
 
   /* open edit menu */
