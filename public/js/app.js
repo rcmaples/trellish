@@ -72,7 +72,9 @@ function jinkies() {
   $('.open-board').on('click', STORE, handle.openBoard);
 
   // CARDS
+  $('main').on('click', '.add-card', handle.showCardForm);
   $('#add-card-form').on('submit', STORE, handle.addCardFormSubmit);
+  // $('#jq-dropdown-3').on('hide', handle.clearCardBoardId);
   $('.edit-item').on('click', STORE, handle.cardEditMenu);
   // $('.edit-card').on('click', STORE, handle.editCardItem);
   $('.complete-card').on('click', STORE, handle.completeCardItem);

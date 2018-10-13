@@ -20,23 +20,30 @@
 */
 
 'use strict';
-let debug;
 
 const handle = {
   preAuth: function(token) {
     STORE.view = 'kanban';
-    render.page(STORE);
-    // api
-    //   .getAll(token)
-    //   .then(result => {
-    //     STORE.list = result.data.todos;
-    //     STORE.view = 'list';
-    //     // render.list(STORE);
-    //     render.page(STORE);
-    //   })
-    //   .catch(err => {
-    //     console.error(err);
-    //   });
+    // state.view = 'kanban';
+    api
+      .getAllBoards(token)
+      .then(result => {
+        for (let board of result.data.boards) {
+          STORE.boards.push(board);
+        }
+        render.page(STORE);
+        render.displayBoards(STORE);
+      })
+      .catch(err => {
+        console.dir(err);
+        let errCode = err.response.status;
+        let errMessage = err.response.statusText;
+        if (errMessage === 'Unauthorized') {
+          alert('Invalid username or password.');
+        }
+        console.error(err);
+      });
+    // TODO: Add get all cards
   },
 
   /* HEADER */
@@ -206,12 +213,16 @@ const handle = {
   /* add card form */
   addCardFormSubmit: function(event) {
     event.preventDefault();
+    console.dir(event);
     const itemObj = {};
     const state = event.data;
     const token = state.token;
-    const itemDescription = $('#itemDescription')
+    const itemDescription = $('#cardName')
       .val()
       .trim();
+    console.log($('#parentBoard'));
+    const parentBoard = $('#parentBoard').val();
+    itemObj.board = parentBoard;
     const sanitized = $(itemDescription).text();
     console.log('sanitized: ', sanitized);
     if (!sanitized) {
@@ -219,8 +230,45 @@ const handle = {
     } else {
       itemObj.text = sanitized;
     }
+    console.dir(itemObj);
+    api
+      .createACard(itemObj, token)
+      .then(res => {
+        state.view = 'kanban';
+        // render.createACard(res);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    document.forms['add-card-form'].reset();
   },
   /* CARDS */
+
+  /* reset card board id */
+  clearCardBoardId: function(event) {
+    $('form#add-card-form')
+      .find('[name="parentBoard"]')
+      .remove();
+    document.forms['add-card-form'].reset();
+  },
+
+  /* pass board id to form */
+
+  showCardForm: function(event) {
+    //let parentBoardExists =
+    let board_id = $(this).attr('data-board-id');
+    let boardString = `<input type="hidden" name="parentBoard" id="parentBoard" value="${board_id}">`;
+
+    console.log('This board ID: ', board_id);
+
+    if ($('#parentBoard').length > 0) {
+      $('#parentBoard').remove();
+    }
+      $('#add-card-form')
+        .find('button')
+        .before(boardString);
+  },
+
   /* open edit menu */
   cardEditMenu: function(event) {
     event.preventDefault();

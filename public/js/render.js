@@ -69,6 +69,8 @@ const render = {
   createBoard: function(response) {
     let boardName = response.data.name;
     let boardID = response.data._id;
+    $('#jq-dropdown-1').hide();
+    document.forms['add-board-form'].reset();
     $('.board-container').append(
       `<li class="board" id=${boardID}>
         <div class="board-header">
@@ -88,9 +90,7 @@ const render = {
   },
 
   displayBoards: function(state) {
-    console.dir(state);
     let boards = state.boards;
-    console.dir(boards);
     boards.forEach(board => {
       $('.board-container').append(
         `<li class="board" id=${board._id}>
@@ -99,9 +99,10 @@ const render = {
             <span class="collapse" aria-hidden="true" focusable="false"></span>
           </button>
           <h2>${board.name}</h2>
-          <button class="add-card" data-jq-dropdown="#jq-dropdown-3" aria-label="add card">
-            <span class="
-            addCardButton" aria-hidden="true" focusable="false"></span>
+          <button class="add-card" data-jq-dropdown="#jq-dropdown-3" aria-label="add card" data-board-id=${
+            board._id
+          }>
+            <span class="addCardButton" aria-hidden="true" focusable="false" ></span>
           </button>
         </div>
         <ul class="card-container">
@@ -112,10 +113,57 @@ const render = {
   },
 
   createCards: function(event) {
-    //do stuff
+    console.dir(event);
+    $('#jq-dropdown-3').hide();
+    document.forms['#add-card-form'].reset();
+  },
+
+  cardFormMenu: function(event) {
+    console.log(event);
+    /*$(body).append(
+      `<div id="jq-dropdown-3" class="addCardForm jq-dropdown jq-dropdown-tip jq-dropdown-anchor-right">
+      <div class="jq-dropdown-panel card-panel">
+        <form id="add-card-form">
+          <label for="cardName">Add card:</label>
+          <input type="hidden" name="parentBoard" id="parentBoard" value="">
+          <input type="text" name="cardName" id="cardName" placeholder="Don't forget..." required>
+          <button type="submit">add</button>
+        </form>
+      </div>
+    </div>`
+    )*/
   },
 
   displayCards: function(event) {
     //do stuff
   }
 };
+
+// CARD HTML FOR REFERENCE:
+/*
+<li class="card">
+  <div class='breakword'>wrap text after 19 chars; max length 39</div>
+  <!-- <button class="edit-item" aria-label="edit card"><span class="edit-item-icon" aria-hidden="true" , focusable="false"></span></button> -->
+</li>
+*/
+
+// CARD DROPDOWN MENU FOR REFERENCE:
+/*
+  <div id="jq-dropdown-3" class="addCardForm jq-dropdown jq-dropdown-tip jq-dropdown-anchor-right">
+    <div class="jq-dropdown-panel card-panel">
+      <form id="add-card-form">
+        <label for="cardName">Add card:</label>
+        <input type="hidden" name="parentBoard" id="paentBoard" value="">
+        <input type="text" name="cardName" id="cardName" placeholder="Don't forget..." required>
+        <button type="submit">add</button>
+      </form>
+    </div>
+  </div>
+
+  // Get board ID
+  $('#jq-dropdown-3').on('show', function(event, dropdownData){
+    dropdownData.trigger.attr("data-board-id")
+  })
+
+
+*/
