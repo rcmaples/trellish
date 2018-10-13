@@ -37,7 +37,7 @@ function jinkies() {
     dev: false,
     view: 'welcome', // welcome | signup | confirmtion |
     backTo: null,
-    list: [],
+    boards: [],
     item: {},
     token: localStorage.getItem('token'),
     emailAddress: null,
@@ -73,9 +73,9 @@ function jinkies() {
 
   // CARDS
   $('#add-card-form').on('submit', STORE, handle.addCardFormSubmit);
-  // $('.edit-item').on('click', STORE, handle.cardEditMenu);
+  $('.edit-item').on('click', STORE, handle.cardEditMenu);
   // $('.edit-card').on('click', STORE, handle.editCardItem);
-  // $('.complete-card').on('click', STORE, handle.completeCardItem);
+  $('.complete-card').on('click', STORE, handle.completeCardItem);
   // $('.favorite-card').on('click', STORE, handle.favoriteCardItem);
   // $('.prioritize-card').on('click', STORE, handle.priorityCardItem);
   // $('.trash-card').on('click', STORE, handle.deleteCardItem);

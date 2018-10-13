@@ -72,7 +72,6 @@ module.exports = app => {
   // GET all boards
   app.get('/boards', jwtAuth, (req, res) => {
     Board.find({ owner: req.user.id })
-      .populate('card')
       .then(boards => {
         res.status(200).send({ boards });
       })

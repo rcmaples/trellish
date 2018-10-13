@@ -34,5 +34,13 @@ const BoardSchema = mongoose.Schema(
   { timestamps: true }
 );
 
+BoardSchema.methods.serialize = function() {
+  return {
+    id: this._id,
+    name: this.name,
+    owner: this.owner
+  };
+};
+
 const Board = mongoose.model('Board', BoardSchema);
 module.exports = { Board };

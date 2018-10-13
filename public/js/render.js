@@ -66,12 +66,49 @@ const render = {
       .slideToggle();
   },
 
-  createBoard: function(event) {
-    //do stuff
+  createBoard: function(response) {
+    let boardName = response.data.name;
+    let boardID = response.data._id;
+    $('.board-container').append(
+      `<li class="board" id=${boardID}>
+        <div class="board-header">
+          <button class="collapse-board" aria-label="collapse board">
+            <span class="collapse" aria-hidden="true" focusable="false"></span>
+          </button>
+          <h2>${boardName}</h2>
+          <button class="add-card" data-jq-dropdown="#jq-dropdown-3" aria-label="add card">
+            <span class="
+            addCardButton" aria-hidden="true" focusable="false"></span>
+          </button>
+        </div>
+        <ul class="card-container">
+        </ul>
+      </li>`
+    );
   },
 
-  displayBoards: function(event) {
-    //do stuff
+  displayBoards: function(state) {
+    console.dir(state);
+    let boards = state.boards;
+    console.dir(boards);
+    boards.forEach(board => {
+      $('.board-container').append(
+        `<li class="board" id=${board._id}>
+        <div class="board-header">
+          <button class="collapse-board" aria-label="collapse board">
+            <span class="collapse" aria-hidden="true" focusable="false"></span>
+          </button>
+          <h2>${board.name}</h2>
+          <button class="add-card" data-jq-dropdown="#jq-dropdown-3" aria-label="add card">
+            <span class="
+            addCardButton" aria-hidden="true" focusable="false"></span>
+          </button>
+        </div>
+        <ul class="card-container">
+        </ul>
+      </li>`
+      );
+    });
   },
 
   createCards: function(event) {

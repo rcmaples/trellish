@@ -43,8 +43,29 @@ const handle = {
   /* Add board form */
   addBoardFormSubmit: function(event) {
     event.preventDefault();
+    const itemObj = {};
+    const state = event.data;
+    const token = state.token;
+    const formData = $('#boardName')
+      .val()
+      .trim();
+    const newBoardName = $(formData).text();
 
-    alert('handling new board form');
+    if (!newBoardName) {
+      itemObj.name = formData;
+    } else {
+      itemObj.name = newBoardName;
+    }
+
+    api
+      .createABoard(itemObj, token)
+      .then(res => {
+        state.view = 'kanban';
+        render.createBoard(res);
+      })
+      .catch(err => {
+        console.error(err);
+      });
   },
   /* Sign Out */
   signout: function(event) {
@@ -52,7 +73,7 @@ const handle = {
     localStorage.removeItem('token');
     const state = event.data;
     state.view = 'welcome';
-    state.list = [];
+    state.boards = [];
     state.token = null;
     state.emailAddress = null;
     // render.emptylist();
@@ -151,14 +172,20 @@ const handle = {
         return api.getAllBoards(state.token);
       })
       .then(result => {
-        state.list = result.data.todos;
+        for (let board of result.data.boards) {
+          state.boards.push(board);
+        }
         console.dir(state);
-        render.displayBoards(state);
-
         render.page(state);
+        render.displayBoards(state);
       })
       .catch(err => {
-        state.action = null;
+        console.dir(err);
+        let errCode = err.response.status;
+        let errMessage = err.response.statusText;
+        if (errMessage === 'Unauthorized') {
+          alert('Invalid username or password.');
+        }
         console.error(err);
       });
   },
