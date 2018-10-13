@@ -78,29 +78,6 @@ const api = {
       .catch(err => {
         console.error(err);
       });
-
-    // return fetch('/boards', {
-    //   method: 'GET',
-    //   headers: {
-    //     Authorization: `Bearer ${token}`
-    //   }
-    // })
-    //   .then(res => {
-    //     return res.json();
-    //   })
-    //   .catch(err => {
-    //     return Promise.reject(err);
-    //   });
-
-    // axios
-    //   .get('/boards', axiosConfig)
-    //   .then(response => {
-    //     //console.dir(response);
-    //     return response;
-    //   })
-    //   .catch(err => {
-    //     return Promise.reject(err);
-    //   });
   },
 
   getOneBoard: function(id, token) {
