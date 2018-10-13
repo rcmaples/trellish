@@ -142,7 +142,7 @@ describe('\n========================\nBoard Endpoints\n========================\
         .then(res => {
           expect(res).to.have.status(200);
           expect(res.body).to.be.an('Object');
-          expect(res.body).to.have.keys('boards');
+          expect(res.body).to.have.keys('boards', 'email', 'userID');
           expect(res.body.boards).to.have.length.gt(0);
           expect(res.body.boards[0]).to.have.property('name');
           expect(res.body.boards[0].name).to.be.a('String');
