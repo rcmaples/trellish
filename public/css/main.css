@@ -159,6 +159,22 @@ button.collapse-board {
   height: 32px;
 }
 
+button.delete-board {
+  background-color: transparent;
+  margin-left: 10px;
+  margin-right: -55px;
+  width: 32px;
+  height: 32px;
+}
+
+.deleteBoardbutton {
+  background: no-repeat center url(../img/add-list-item.svg);
+  display: inline-flex;
+  height: 32px;
+  width: 32px;
+  transform: rotate(-45deg);
+}
+
 /* Welcome and Signup/Signin */
 
 /* Boards  & Cards */
@@ -368,13 +384,12 @@ ul {
   background: url('../img/edit.svg');
   float: right;
 }
+.card.favorite {
+  background: #ffd57c;
+}
 
 .card.priority {
   background: #ff7c7c;
-}
-
-.card.favorite {
-  background: #ffd57c;
 }
 
 .card.complete {

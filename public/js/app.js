@@ -69,7 +69,8 @@ function jinkies() {
   // BOARDS
   $('#add-board-form').on('submit', STORE, handle.addBoardFormSubmit);
   $('main').on('click', '.collapse-board', STORE, handle.collapseBoard);
-  $('.open-board').on('click', STORE, handle.openBoard);
+  // $('.open-board').on('click', STORE, handle.openBoard);
+  $('main').on('click', '.delete-board', STORE, handle.deleteBoard);
 
   // CARDS
   $('main').on('click', '.add-card', handle.showCardForm);

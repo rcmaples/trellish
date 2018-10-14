@@ -180,6 +180,39 @@ describe('\n========================\nBoard Endpoints\n========================\
     });
   });
 
+  describe('\n----------\nGET /boards/:id/cards\n----------\n', () => {
+    it('should fail to get a list of all cards for a specifc board if not authenticated', () => {
+      return chai
+        .request(app)
+        .get(`/boards/${boardId}/cards`)
+        .then(res => {
+          expect(res).to.have.status(401);
+        });
+    });
+
+    it('should fail if the ID is invalid', () => {
+      return chai
+        .request(app)
+        .get(`/boards/${fakeID}/cards`)
+        .set('Authorization', `Bearer ${token}`)
+        .then(res => {
+          expect(res).to.have.status(404);
+        });
+    });
+
+    it('should return an array of objects', () => {
+      return chai
+        .request(app)
+        .get(`/boards/${boardId}/cards`)
+        .set('Authorization', `Bearer ${token}`)
+        .then(res => {
+          expect(res).to.have.status(200);
+          expect(res.body).to.have.key('cards');
+          expect(res.body.cards[0].board).to.eq(`${boardId}`);
+        });
+    });
+  });
+
   describe('\n----------\nPATCH /boards/:id\n----------\n', () => {
     it('Should fail if not authenticated', () => {
       return chai

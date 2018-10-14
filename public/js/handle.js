@@ -251,6 +251,37 @@ const handle = {
       });
     document.forms['add-card-form'].reset();
   },
+
+  deleteBoard: function(event) {
+    event.preventDefault();
+    const state = event.data;
+    const boardID = $(this)
+      .parents(':eq(1)')
+      .attr('id');
+    const boardName = $(`#${boardID}`)
+      .find('h2')
+      .text();
+    const token = state.token;
+    if (
+      confirm(
+        'Deleting a board will delete all child cards and cannot be undone.\n\nAre you sure you want to continue?'
+      )
+    ) {
+      api
+        .getCardsForBoard(boardID, token)
+        .then(response => {
+          for (let card of response) {
+            api.removeACard(card._id, token);
+          }
+        })
+        .then(() => {
+          api.removeABoard(boardID, token);
+        })
+        .then(() => {
+          render.removedBoard(state, boardID);
+        });
+    }
+  },
   /* CARDS */
 
   /* reset card board id */

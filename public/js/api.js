@@ -170,6 +170,24 @@ const api = {
       });
   },
 
+  getCardsForBoard: function(id, token) {
+    const axiosConfig = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    };
+
+    return axios
+      .get(`/boards/${id}/cards`, axiosConfig)
+      .then(response => {
+        return response.data.cards;
+      })
+      .catch(err => {
+        return Promise.reject(err);
+      });
+  },
+
   removeACard: function(id, token) {
     const axiosConfig = {
       headers: {
@@ -180,6 +198,24 @@ const api = {
 
     return axios
       .delete(`/cards/${id}`, axiosConfig)
+      .then(response => {
+        return response;
+      })
+      .catch(err => {
+        return Promise.reject(err);
+      });
+  },
+
+  removeABoard: function(id, token) {
+    const axiosConfig = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    };
+
+    return axios
+      .delete(`/boards/${id}`, axiosConfig)
       .then(response => {
         return response;
       })

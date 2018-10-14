@@ -25,6 +25,7 @@ const passport = require('passport');
 const jwtAuth = passport.authenticate('jwt', { session: false });
 const { ObjectID } = require('mongodb');
 const { Board } = require('../models/board');
+const { Card } = require('../models/card');
 
 module.exports = app => {
   //C
@@ -71,11 +72,47 @@ module.exports = app => {
   });
   // GET all boards
   app.get('/boards', jwtAuth, (req, res) => {
-    let email = req.user.email;
-    let userID = req.user._id;
+    const email = req.user.email;
+    const userID = req.user._id;
     Board.find({ owner: req.user.id })
       .then(boards => {
         res.status(200).send({ boards, email, userID });
+      })
+      .catch(err => {
+        res.status(400).send(err);
+      });
+  });
+
+  app.get('/boards/:id/cards', jwtAuth, (req, res) => {
+    const email = req.user.email;
+    const userID = req.user._id;
+    const boardID = req.params.id;
+
+    // Is the board ID Valid?
+    if (!ObjectID.isValid(boardID)) {
+      return res.status(400).send('Invalid Board ID');
+    }
+
+    // Find the board
+    Board.findById(boardID)
+      .then(board => {
+        // Does the Board exist?
+        if (!board) {
+          return res.status(404).send('Board ID Not Found');
+        }
+
+        // Is the requester the board owner?
+        if (board.owner != userID) {
+          return res.status(401).send(userID);
+        }
+
+        Card.find({ board: boardID })
+          .then(cards => {
+            res.status(200).send({ cards });
+          })
+          .catch(err => {
+            res.status(400).send(err, 'hi');
+          });
       })
       .catch(err => {
         res.status(400).send(err);
