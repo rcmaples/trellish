@@ -103,6 +103,11 @@ button {
   border-radius: 5px;
 }
 
+button:disabled {
+  opacity: 0.15;
+  cursor: not-allowed;
+}
+
 #nav {
   display: flex;
   justify-content: space-around;

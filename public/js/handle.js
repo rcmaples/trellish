@@ -95,6 +95,7 @@ const handle = {
     state.cards = [];
     state.token = null;
     state.emailAddress = null;
+    $('#jq-dropdown-2').hide(); // minor dom manipulation
     render.emptyBoards();
     render.page(state);
   },
@@ -283,13 +284,13 @@ const handle = {
   /* open edit menu */
   cardEditMenu: function(event) {
     event.preventDefault();
-    render.editMenu();
+    render.editMenu(event);
   },
 
   /* edit */
   editCardItem: function(event) {
     event.preventDefault();
-    render.hideMenu();
+    render.hideMenu(event);
   },
   /* mark complete */
   completeCardItem: function(event) {

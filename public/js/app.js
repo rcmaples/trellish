@@ -75,8 +75,8 @@ function jinkies() {
   $('main').on('click', '.add-card', handle.showCardForm);
   $('#add-card-form').on('submit', STORE, handle.addCardFormSubmit);
   // $('#jq-dropdown-3').on('hide', handle.clearCardBoardId);
-  $('.edit-item').on('click', STORE, handle.cardEditMenu);
-  // $('.edit-card').on('click', STORE, handle.editCardItem);
+  $('main').on('click', '.edit-item', STORE, handle.cardEditMenu);
+  $('main').on('click', '.edit-card', STORE, handle.editCardItem);
   $('.complete-card').on('click', STORE, handle.completeCardItem);
   // $('.favorite-card').on('click', STORE, handle.favoriteCardItem);
   // $('.prioritize-card').on('click', STORE, handle.priorityCardItem);

@@ -15,6 +15,24 @@
 */
 
 'use strict';
+let origHtml = '';
+const editMenu = `<div class="edit-menu">
+    <button class="edit-card" aria-label="edit card">
+      <span class="edit-icon invert" aria-hidden="true" focusable="false"></span>
+    </button>
+    <button class="complete-card" aria-label="complete card">
+      <span class="complete-icon" aria-hidden="true" focusable="false"></span>
+    </button>
+    <button class="favorite-card" aria-label="favorite card">
+      <span class="favorite-icon" aria-hidden="true" focusable="false"></span>
+    </button>
+    <button class="prioritize-card" aria-label="prioritize card">
+      <span class="priority-icon" aria-hidden="true" focusable="false"></span>
+    </button>
+    <button class="trash-card" aria-label="delete card">
+      <span class="trash-icon" aria-hidden="true" focusable="false"></span>
+    </button>
+  </div>`;
 
 const render = {
   // Render the Page:
@@ -44,21 +62,30 @@ const render = {
     }
   },
 
-  editMenu: function() {
-    // see https://repl.it/@rcmaples/RingedGrimVertex?lite=1
-    $('.edit-menu')
-      .show()
-      .toggle('slide', { direction: 'right' }, 500);
+  editMenu: function(event) {
+    let target = $(event.target);
+    let id = $(target)
+      .parent()
+      .attr('data-card-id');
+    origHtml = $(`#${id}`).html();
+    $(`#${id}`).empty();
+    $(`#${id}`).append($(editMenu));
+    // $('.edit-menu').toggle('slide', { direction: 'right' }, 500);
+    $('.edit-item').prop('disabled', true);
   },
 
   hideMenu: function() {
-    $('.edit-menu')
-      .toggle('slide', { direction: 'left' }, 500)
-      .hide();
+    let target = $(event.target);
+    let id = $(target)
+      .parents(':eq(2)')
+      .attr('id');
+    $('.edit-menu').remove();
+    $(`#${id}`).append(origHtml);
+
+    $('.edit-item').prop('disabled', false);
   },
 
   collapseBoard: function(event) {
-    let target = $(event.target);
     target.toggleClass('flip');
     target
       .closest('li')
@@ -127,7 +154,9 @@ const render = {
       .append(
         `<li class="card" id="${cardID}">
           <div class='breakword'>${text}</div>
-          <button class="edit-item" aria-label="edit card" data-card-id="${cardID}"><span class="edit-item-icon" aria-hidden="true" , focusable="false"></span></button>
+          <button class="edit-item" aria-label="edit card" data-card-id="${cardID}">
+            <span class="edit-item-icon" aria-hidden="true" focusable="false"></span>
+          </button>
           </li>`
       );
   },
@@ -159,7 +188,9 @@ const render = {
         .append(
           `<li class="card" id="${cardID}">
           <div class='breakword'>${text}</div>
-          <button class="edit-item" aria-label="edit card" data-card-id="${cardID}"><span class="edit-item-icon" aria-hidden="true" , focusable="false"></span></button>
+          <button class="edit-item" aria-label="edit card" data-card-id="${cardID}">
+          <span class="edit-item-icon" aria-hidden="true" focusable="false"></span>
+          </button>
           </li>`
         );
     });

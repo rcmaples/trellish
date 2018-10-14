@@ -17,6 +17,7 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
   <link type="text/css" rel="stylesheet" href="./css/jquery.dropdown.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
 
   <!--[if lt IE 9]>
@@ -98,7 +99,7 @@
     <div class="jq-dropdown-panel">
       <form id="add-board-form">
         <label for="boardName">Add board:</label>
-        <input type="text" name="boardName" id="boardName" placeholder="In progress">
+        <input type="text" name="boardName" id="boardName" placeholder="In progress" required>
         <button type="submit">add</button>
       </form>
     </div>
@@ -114,7 +115,7 @@
     <div class="jq-dropdown-panel card-panel">
       <form id="add-card-form">
         <label for="cardName">Add card:</label>
-        <input type="hidden" name="parentBoard" id="parentBoard" value="">
+        <!-- <input type="hidden" name="parentBoard" id="parentBoard" value=""> -->
         <input type="text" name="cardName" id="cardName" placeholder="Don't forget..." required>
         <button type="submit">add</button>
       </form>
