@@ -146,8 +146,9 @@ button.jq-dropdown-open {
 }
 
 button.add-card {
+  display: flex;
   background-color: transparent;
-  margin-right: 10px;
+  /* margin-right: 10px; */
   width: 32px;
   height: 32px;
 }
@@ -160,9 +161,10 @@ button.collapse-board {
 }
 
 button.delete-board {
+  display: flex;
   background-color: transparent;
-  margin-left: 10px;
-  margin-right: -55px;
+  /* margin-left: 10px;
+  margin-right: -55px; */
   width: 32px;
   height: 32px;
 }
@@ -219,7 +221,6 @@ li {
 }
 
 .board-container {
-  /*display: none !important; /*TODO: REMOVE THIS LINE AFTER DEV */
   padding-left: -0px !important;
   padding-inline-start: 0px;
   position: relative;
@@ -230,7 +231,6 @@ li {
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
-  /* padding: 5px; this */
 }
 
 .board-container::-webkit-scrollbar-track {
@@ -312,8 +312,15 @@ ul {
 .board-header {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
 }
+
+.button-container {
+  display: inline-flex;
+  justify-content: space-around;
+  width: 75px;
+}
+
 .board h2 {
   display: inline-flex;
   margin: 10px 0 10px 0;
@@ -355,20 +362,6 @@ ul {
   justify-content: space-between;
   /* cursor: move; */
 }
-
-/* .card.over {
-  border: 2px dashed #000;
-}
-
-[draggable] {
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-  /* Required to make elements draggable in old WebKit */
-/*-khtml-user-drag: element;
-  -webkit-user-drag: element;
-} */
 
 .card .breakword {
   display: inline-block;
@@ -572,6 +565,7 @@ legend {
 .jq-dropdown .jq-dropdown-panel:not(.card-panel) {
   background: rgba(100, 100, 100) !important;
   padding: 10px;
+  max-width: 280px;
 }
 
 .jq-dropdown .jq-dropdown-menu label,
@@ -617,7 +611,9 @@ legend {
   display: none;
 }
 
-/*  TODO: REMOVE THIS AFTER MVP */
 .board-header h2 {
   margin: 10px;
+  display: inline-block;
+  width: 200px;
+  overflow: hidden;
 }

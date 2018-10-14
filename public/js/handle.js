@@ -256,8 +256,9 @@ const handle = {
     event.preventDefault();
     const state = event.data;
     const boardID = $(this)
-      .parents(':eq(1)')
+      .parents(':eq(2)')
       .attr('id');
+
     const boardName = $(`#${boardID}`)
       .find('h2')
       .text();

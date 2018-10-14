@@ -106,13 +106,15 @@ const render = {
             <span class="collapse" aria-hidden="true" focusable="false"></span>
           </button>
           <h2>${boardName}</h2>
+          <div class="button-container">
           <button class="delete-board" aria-label="delete board">
-            <span class="deleteBoardbutton" aria-hidden="true" focusable="false"></span>
-          </button>
-          <button class="add-card" data-jq-dropdown="#jq-dropdown-3" aria-label="add card">
-            <span class="
-            addCardButton" aria-hidden="true" focusable="false"></span>
-          </button>
+          <span class="deleteBoardbutton" aria-hidden="true" focusable="false"></span>
+        </button>
+        <button class="add-card" data-jq-dropdown="#jq-dropdown-3" aria-label="add card"
+        data-board-id=${boardID}>
+          <span class="addCardButton" aria-hidden="true" focusable="false" ></span>
+        </button>
+          </div>
         </div>
         <ul class="card-container">
         </ul>
@@ -130,14 +132,16 @@ const render = {
             <span class="collapse" aria-hidden="true" focusable="false"></span>
           </button>
           <h2>${board.name}</h2>
+          <div class='button-container'>
           <button class="delete-board" aria-label="delete board">
-            <span class="deleteBoardbutton" aria-hidden="true" focusable="false"></span>
-          </button>
-          <button class="add-card" data-jq-dropdown="#jq-dropdown-3" aria-label="add card" data-board-id=${
-            board._id
-          }>
-            <span class="addCardButton" aria-hidden="true" focusable="false" ></span>
-          </button>
+          <span class="deleteBoardbutton" aria-hidden="true" focusable="false"></span>
+        </button>
+        <button class="add-card" data-jq-dropdown="#jq-dropdown-3" aria-label="add card" data-board-id=${
+          board._id
+        }>
+          <span class="addCardButton" aria-hidden="true" focusable="false" ></span>
+        </button>
+          </div>
         </div>
         <ul class="card-container">
         </ul>
