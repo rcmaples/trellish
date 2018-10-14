@@ -377,6 +377,14 @@ const handle = {
   /* delete */
   deleteCardItem: function(event) {
     event.preventDefault();
-    alert('ready to delete items');
+    const state = event.data;
+    const token = state.token;
+    let cardID = $(this)
+      .parents(':eq(1)')
+      .attr('id');
+    api
+      .removeACard(cardID, token)
+      .then(render.hideMenu(event))
+      .then(render.removedCard(state, cardID));
   }
 };

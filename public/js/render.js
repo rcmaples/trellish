@@ -225,5 +225,9 @@ const render = {
       $(`#${id}`).removeClass(`complete`);
       $(`#${id}`).addClass(`${status}`);
     }
+  },
+
+  removedCard: function(state, el) {
+    $(`#${el}`).remove();
   }
 };
