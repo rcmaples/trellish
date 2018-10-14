@@ -110,10 +110,19 @@ module.exports = app => {
   app.patch('/cards/:id', jwtAuth, (req, res) => {
     const cardID = req.params.id;
     const userID = req.user.id;
-    const text = _.get(req.body, ['text']);
+    // const text = _.get(req.body, ['text']);
+    const body = _.pick(req.body, ['text', 'completed', 'status']);
 
     if (!ObjectID.isValid(cardID)) {
       return res.status(400).send('Invalid Card ID');
+    }
+
+    if (_.isboolean(body.completed) && body.completed) {
+      // if completed, add a completed time
+      body.completedAt = new Date().getTime();
+    } else {
+      body.completed = false;
+      body.completedAt = null;
     }
 
     // Find the card
@@ -125,7 +134,8 @@ module.exports = app => {
         }
 
         // Actually patch the card text
-        Card.findByIdAndUpdate(card._id, { $set: { text: text } })
+        // Card.findByIdAndUpdate(card._id, { $set: { text: text } })
+        Card.findByIdAndUpdate(card._id, { $set: body }, { new: true })
           .then(card => {
             if (!card) {
               return res.status(404).send('Card ID Not Found');

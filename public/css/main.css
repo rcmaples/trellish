@@ -369,16 +369,16 @@ ul {
   float: right;
 }
 
+.card.priority {
+  background: #ff7c7c;
+}
+
 .card.favorite {
   background: #ffd57c;
 }
 
 .card.complete {
   background: #7cffa8;
-}
-
-.card.priority {
-  background: #ff7c7c;
 }
 
 /* .card > .edit-menu { */

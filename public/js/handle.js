@@ -295,19 +295,83 @@ const handle = {
   /* mark complete */
   completeCardItem: function(event) {
     event.preventDefault();
-    alert('ready to mark as complete');
+    const itemObj = {};
+    const state = event.data;
+    const token = state.token;
+    itemObj.status = '';
+    let cardID = $(this)
+      .parents(':eq(1)')
+      .attr('id');
+
+    // TOGGLE complete
+    if ($(`#${cardID}`).hasClass('complete')) {
+      itemObj.completed = false;
+      $(`#${cardID}`).removeClass('complete');
+    } else {
+      itemObj.completed = true;
+    }
+
+    api
+      .modifyCard(itemObj, cardID, token)
+      .then(res => {
+        console.dir(res);
+        render.cardStatus(res);
+      })
+      .then(render.hideMenu(event));
   },
 
   /* mark favorite */
   favoriteCardItem: function(event) {
     event.preventDefault();
-    alert('ready to mark as favorite');
+    const itemObj = {};
+    const state = event.data;
+    const token = state.token;
+    let cardID = $(this)
+      .parents(':eq(1)')
+      .attr('id');
+
+    // TOGGLE favorite
+    if ($(`#${cardID}`).hasClass('favorite')) {
+      itemObj.status = '';
+      $(`#${cardID}`).removeClass('favorite');
+    } else {
+      itemObj.status = 'favorite';
+    }
+
+    api
+      .modifyCard(itemObj, cardID, token)
+      .then(res => {
+        console.dir(res);
+        render.cardStatus(res);
+      })
+      .then(render.hideMenu(event));
   },
 
   /* mark priorty */
   priorityCardItem: function(event) {
     event.preventDefault();
-    alert('ready to mark as priority');
+    const itemObj = {};
+    const state = event.data;
+    const token = state.token;
+    let cardID = $(this)
+      .parents(':eq(1)')
+      .attr('id');
+
+    // TOGGLE priority
+    if ($(`#${cardID}`).hasClass('priority')) {
+      itemObj.status = '';
+      $(`#${cardID}`).removeClass('priority');
+    } else {
+      itemObj.status = 'priority';
+    }
+
+    api
+      .modifyCard(itemObj, cardID, token)
+      .then(res => {
+        console.dir(res);
+        render.cardStatus(res);
+      })
+      .then(render.hideMenu(event));
   },
 
   /* delete */

@@ -30,6 +30,7 @@ const CardSchema = mongoose.Schema(
     },
     completed: { type: Boolean, default: false },
     completedAt: { type: Number, defualt: null },
+    status: { type: String, default: null },
     owner: { type: String },
     board: { type: Schema.Types.ObjectId, ref: 'Board' }
   },

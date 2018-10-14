@@ -86,6 +86,7 @@ const render = {
   },
 
   collapseBoard: function(event) {
+    let target = $(event.target);
     target.toggleClass('flip');
     target
       .closest('li')
@@ -183,6 +184,9 @@ const render = {
       let cardID = card._id;
       let parent = card.board;
       let text = card.text;
+      let cardStatus = card.status;
+      let cardCompleted = card.completed;
+
       $(`#${parent}`)
         .find('ul')
         .append(
@@ -193,6 +197,33 @@ const render = {
           </button>
           </li>`
         );
+
+      if (cardCompleted) {
+        $(`#${cardID}`).addClass(`complete`);
+        $(`#${cardID}`).removeClass(`${cardStatus}`);
+      } else if (cardStatus) {
+        $(`#${cardID}`).removeClass(`complete`);
+        $(`#${cardID}`).addClass(`${cardStatus}`);
+      }
     });
+  },
+
+  cardStatus: function(response) {
+    let completed = response.data.card.completed;
+    console.log('completed? ', completed);
+    let status = response.data.card.status;
+    let id = response.data.card._id;
+    let text = response.data.card.text;
+    if (completed) {
+      console.log('completed');
+      console.log('status: ', status);
+      $(`#${id}`).addClass(`complete`);
+      $(`#${id}`).removeClass(`${status}`);
+    } else {
+      console.log('not completed');
+      console.log('status: ', status);
+      $(`#${id}`).removeClass(`complete`);
+      $(`#${id}`).addClass(`${status}`);
+    }
   }
 };

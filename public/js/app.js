@@ -73,14 +73,14 @@ function jinkies() {
 
   // CARDS
   $('main').on('click', '.add-card', handle.showCardForm);
-  $('#add-card-form').on('submit', STORE, handle.addCardFormSubmit);
-  // $('#jq-dropdown-3').on('hide', handle.clearCardBoardId);
   $('main').on('click', '.edit-item', STORE, handle.cardEditMenu);
   $('main').on('click', '.edit-card', STORE, handle.editCardItem);
-  $('.complete-card').on('click', STORE, handle.completeCardItem);
-  // $('.favorite-card').on('click', STORE, handle.favoriteCardItem);
-  // $('.prioritize-card').on('click', STORE, handle.priorityCardItem);
-  // $('.trash-card').on('click', STORE, handle.deleteCardItem);
+  $('main').on('click', '.complete-card', STORE, handle.completeCardItem);
+  $('main').on('click', '.favorite-card', STORE, handle.favoriteCardItem);
+  $('main').on('click', '.prioritize-card', STORE, handle.priorityCardItem);
+  $('main').on('click', '.trash-card', STORE, handle.deleteCardItem);
+  $('#add-card-form').on('submit', STORE, handle.addCardFormSubmit);
+  // $('#jq-dropdown-3').on('hide', handle.clearCardBoardId);
 
   // SIGNOUT
   $('.signout').on('click', STORE, handle.signout);
