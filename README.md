@@ -3,7 +3,6 @@
 A Trello® Clone
 
 [![Build Status](https://travis-ci.org/rcmaples/trellish.svg?branch=master)](https://travis-ci.org/rcmaples/trellish)
-[![codecov](https://codecov.io/gh/rcmaples/trellish/branch/master/graph/badge.svg)](https://codecov.io/gh/rcmaples/trellish)
 [![Dependancy Monitoring](https://badgen.net/badge//dependabot/green?icon=dependabot)](https://dependabot.com/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
