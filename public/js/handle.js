@@ -239,7 +239,7 @@ const handle = {
     } else {
       itemObj.text = sanitized;
     }
-    // console.dir(itemObj);
+
     api
       .createACard(itemObj, token)
       .then(res => {
