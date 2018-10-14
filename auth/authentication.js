@@ -25,8 +25,6 @@ exports.signin = function(req, res, next) {
 
 // sign up
 exports.signup = function(req, res, next) {
-  // let body = req.body;
-  // console.log({ body });
   const { email, password, name } = req.body;
 
   if (!email || !password) {

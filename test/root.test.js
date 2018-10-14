@@ -21,7 +21,6 @@ describe('\n========================\nRoot Endpoint\n========================\n'
         .request(app)
         .get('/')
         .then(res => {
-          // console.log(res);
           expect(res).to.have.status(200);
           expect(res).to.be.html;
         });

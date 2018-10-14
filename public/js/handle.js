@@ -40,7 +40,6 @@ const handle = {
       })
       .then(res => {
         // array of card objects: res.data.cards
-        // console.log(res.data.cards);
         for (let card of res.data.cards) {
           STORE.cards.push(card);
         }
@@ -144,8 +143,6 @@ const handle = {
     api
       .signup(signupObj)
       .then(() => {
-        // console.log(response.response.status);
-        // console.log(response.response.data.code);
         state.view = 'confirmation';
         render.page(state);
       })
@@ -270,8 +267,6 @@ const handle = {
     //let parentBoardExists =
     let board_id = $(this).attr('data-board-id');
     let boardString = `<input type="hidden" name="parentBoard" id="parentBoard" value="${board_id}">`;
-
-    // console.log('This board ID: ', board_id);
 
     if ($('#parentBoard').length > 0) {
       $('#parentBoard').remove();

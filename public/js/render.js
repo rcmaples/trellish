@@ -162,22 +162,6 @@ const render = {
       );
   },
 
-  cardFormMenu: function(event) {
-    console.log(event);
-    /*$(body).append(
-      `<div id="jq-dropdown-3" class="addCardForm jq-dropdown jq-dropdown-tip jq-dropdown-anchor-right">
-      <div class="jq-dropdown-panel card-panel">
-        <form id="add-card-form">
-          <label for="cardName">Add card:</label>
-          <input type="hidden" name="parentBoard" id="parentBoard" value="">
-          <input type="text" name="cardName" id="cardName" placeholder="Don't forget..." required>
-          <button type="submit">add</button>
-        </form>
-      </div>
-    </div>`
-    )*/
-  },
-
   displayCards: function(state) {
     let cards = state.cards;
     cards.forEach(card => {
@@ -210,18 +194,13 @@ const render = {
 
   cardStatus: function(response) {
     let completed = response.data.card.completed;
-    console.log('completed? ', completed);
     let status = response.data.card.status;
     let id = response.data.card._id;
     let text = response.data.card.text;
     if (completed) {
-      console.log('completed');
-      console.log('status: ', status);
       $(`#${id}`).addClass(`complete`);
       $(`#${id}`).removeClass(`${status}`);
     } else {
-      console.log('not completed');
-      console.log('status: ', status);
       $(`#${id}`).removeClass(`complete`);
       $(`#${id}`).addClass(`${status}`);
     }
