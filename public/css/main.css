@@ -3,6 +3,12 @@
   /* border: 1px solid red; */
 }
 
+a,
+a:visited,
+a:active {
+  color: #070a52;
+}
+
 body {
   min-width: 300px;
   font-family: 'Open Sans', sans-serif;
@@ -616,4 +622,12 @@ legend {
   display: inline-block;
   width: 200px;
   overflow: hidden;
+}
+
+@media only screen and (max-device-width: 480px) {
+  #signin p {
+    width: 200px;
+    word-break: break-word;
+    white-space: normal;
+  }
 }
