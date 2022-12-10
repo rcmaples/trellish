@@ -28,7 +28,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
     "lodash.get": "^4.4.2",
     "lodash.isboolean": "^3.0.3",
